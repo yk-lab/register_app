@@ -71,7 +71,7 @@ import { getFormattedPrice } from "./utils/numberFormat";
 
 const initialData = ref<Item[]>([]);
 const items = ref<Item[]>(initialData.value);
-const initialValue = ref("4532461000511");
+const initialValue = ref("");
 const value = ref("");
 const lastTime = ref(0);
 const itemList = useTemplateRef("itemList");
@@ -103,7 +103,10 @@ const handleKeypress = async (e: KeyboardEvent) => {
   }
   lastTime.value = now;
   if (e.key === "Enter") {
-    const data = await $fetch<Item>(`/api/items/${value.value}/`);
+    const data = await $fetch<Item>(`/api/items/${value.value}/`, {
+      method: "GET",
+      responseType: "json",
+    });
     if (data) {
       items.value.push(data);
 

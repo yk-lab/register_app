@@ -4,8 +4,10 @@ export default defineEventHandler(async (event) => {
     const runtimeConfig = useRuntimeConfig();
 
     const janCode = getRouterParam(event, 'janCode');
-    const data = await event.$fetch<Item[]>(runtimeConfig.itemApiUrl);
-    
+    const data = await $fetch<Item[]>(runtimeConfig.itemApiUrl, {
+        responseType: "json",
+    });
+
     const item = data.find((item) => item.jan_code === janCode);
     if (!item) {
         throw createError({
