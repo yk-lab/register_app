@@ -19,7 +19,7 @@
     "@formkit/auto-animate": "0.8.2",
     "@headlessui/vue": "1.7.23",
     "@heroicons/vue": "2.2.0",
-    "@sentry/nuxt": "8.45.1",
+    "@sentry/nuxt": "8.47.0",
     "@zag-js/dialog": "0.78.3",
     "@zag-js/vue": "0.78.3",
     "autoprefixer": "10.4.20",
