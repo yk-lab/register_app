@@ -40,8 +40,8 @@ importers:
         specifier: 10.4.20
         version: 10.4.20(postcss@8.4.49)
       lucide-vue-next:
-        specifier: 0.468.0
-        version: 0.468.0(vue@3.5.13(typescript@5.7.2))
+        specifier: 0.471.0
+        version: 0.471.0(vue@3.5.13(typescript@5.7.2))
       postcss:
         specifier: 8.4.49
         version: 8.4.49
@@ -2415,8 +2415,8 @@ packages:
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
 
-  lucide-vue-next@0.468.0:
-    resolution: {integrity: sha512-quV/6T8YB1XK0VOEnebg3Byd8Rsan5/m95cvjnuHV4vcS3qEnLAybkrSh0hk3ppavx+V7R1PjNW+mGDvcBdz4A==}
+  lucide-vue-next@0.471.0:
+    resolution: {integrity: sha512-ZJyImsuBOR91VF5auILuo1U0m93sSjYs+i/m5ISx8oG4FWMXX7hzuotx24/dTMRp+e8pMWUeVmPBKsNcNSrUzg==}
     peerDependencies:
       vue: '>=3.0.1'
 
@@ -6392,7 +6392,7 @@ snapshots:
     dependencies:
       yallist: 3.1.1
 
-  lucide-vue-next@0.468.0(vue@3.5.13(typescript@5.7.2)):
+  lucide-vue-next@0.471.0(vue@3.5.13(typescript@5.7.2)):
     dependencies:
       vue: 3.5.13(typescript@5.7.2)
 
