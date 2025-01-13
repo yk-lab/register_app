@@ -34,8 +34,8 @@ importers:
         specifier: 0.78.3
         version: 0.78.3
       '@zag-js/vue':
-        specifier: 0.78.3
-        version: 0.78.3(vue@3.5.13(typescript@5.7.2))
+        specifier: 0.81.1
+        version: 0.81.1(vue@3.5.13(typescript@5.7.2))
       autoprefixer:
         specifier: 10.4.20
         version: 10.4.20(postcss@8.4.49)
@@ -1381,6 +1381,9 @@ packages:
   '@zag-js/core@0.78.3':
     resolution: {integrity: sha512-cQ75ATooLbfomFWHwIbjSLh8pryPSyjDdXoU4QQRNAD9z0ImRnylXC+V4Aqn5V8ATOXjzgLvRnVO95+USR+B2w==}
 
+  '@zag-js/core@0.81.1':
+    resolution: {integrity: sha512-LJwPH5RgY0EUDDSCfpXFoXQ9+CwakiZOjo9SZdq7lk+wYmP8hCv+r2FCAPclSHljyrGqpIlHU/brkcFslkcN4Q==}
+
   '@zag-js/dialog@0.78.3':
     resolution: {integrity: sha512-2tF6nbcTWNXwIUy8jM5Tc3kA5t9HL7R4W8PEC38KZEbGVy5dOZdTNpiK5wzrTfYYmyknFD1EruWcH50GrcE5DA==}
 
@@ -1405,17 +1408,26 @@ packages:
   '@zag-js/store@0.78.3':
     resolution: {integrity: sha512-gI2zXes0Woxe1KpB3skDULwp5MfbwS3Q8vDxavf8rXQo7THKDaIjHt4dtkB1sF0hMQiF4yXvZi4g1k3miNDT3Q==}
 
+  '@zag-js/store@0.81.1':
+    resolution: {integrity: sha512-IsRnK6G/I5Sx8kxLC/PNUmxduOeLsrtgWuw1FGu1x88BgE+/akmL9fZoGdQds+TFNPESTtqWQxiTFm1w3nn/aQ==}
+
   '@zag-js/text-selection@0.78.3':
     resolution: {integrity: sha512-sO7cHpCkXlZu9HaE57AMZ6JzpZ4kCUibkg66tNSk8pc+H2J0Xg8H11cGaM2X3Sg60lM5lf6hPmnZgSyDIG4+wA==}
 
   '@zag-js/types@0.78.3':
     resolution: {integrity: sha512-R528X3NmukoyBLm1uFwBgejHnX1vLm1q+wXomh/gYwG8RL6J96pH7tlYL0uNnXE8BzDvGUalQ49VVdC3PJ4Rmw==}
 
+  '@zag-js/types@0.81.1':
+    resolution: {integrity: sha512-+T9H99wHn7snO0LwZ9PHX9o4ZAz3Y80Z3nlEFCWyGwFjRwrmZxoGN016pQI+C9HUVe+qXDN5oXysV1N/1/6O0A==}
+
   '@zag-js/utils@0.78.3':
     resolution: {integrity: sha512-gjpx6DPiVb2hO6t4BVD23/68F/L5p0B+Xky+OfrTbnoPH20iPX3MnFsjG+r4u3dVzUykRdBnG+WHbpgNDPZYxg==}
 
-  '@zag-js/vue@0.78.3':
-    resolution: {integrity: sha512-67Z9SzGMgX2mO5nR+/hskT5cvEPjf4G7UIQYINgclek3DJeZF4GWuHOX+eoi6H+433SvDHsxnej68ZwF4LhZgQ==}
+  '@zag-js/utils@0.81.1':
+    resolution: {integrity: sha512-lWpU6n6wKhK6GkgyE3IdEChY5AjwmrAqdr9rc4F2qlb/lEp/TFbKOn2TOiFHPLd2YzE4jElFQL7+/7CDK3qFPg==}
+
+  '@zag-js/vue@0.81.1':
+    resolution: {integrity: sha512-4UXGOf4GhJG0HHHF+sz/vwW01KmefrJWyCU0aDSRyDDgYwnozg2fDSlkyCvpWT2hcf/VEnnlZmMkFtyrnaeAPA==}
     peerDependencies:
       vue: '>=3.0.0'
 
@@ -5330,6 +5342,11 @@ snapshots:
       '@zag-js/store': 0.78.3
       '@zag-js/utils': 0.78.3
 
+  '@zag-js/core@0.81.1':
+    dependencies:
+      '@zag-js/store': 0.81.1
+      '@zag-js/utils': 0.81.1
+
   '@zag-js/dialog@0.78.3':
     dependencies:
       '@zag-js/anatomy': 0.78.3
@@ -5376,6 +5393,10 @@ snapshots:
     dependencies:
       proxy-compare: 3.0.1
 
+  '@zag-js/store@0.81.1':
+    dependencies:
+      proxy-compare: 3.0.1
+
   '@zag-js/text-selection@0.78.3':
     dependencies:
       '@zag-js/dom-query': 0.78.3
@@ -5384,13 +5405,19 @@ snapshots:
     dependencies:
       csstype: 3.1.3
 
+  '@zag-js/types@0.81.1':
+    dependencies:
+      csstype: 3.1.3
+
   '@zag-js/utils@0.78.3': {}
 
-  '@zag-js/vue@0.78.3(vue@3.5.13(typescript@5.7.2))':
+  '@zag-js/utils@0.81.1': {}
+
+  '@zag-js/vue@0.81.1(vue@3.5.13(typescript@5.7.2))':
     dependencies:
-      '@zag-js/core': 0.78.3
-      '@zag-js/store': 0.78.3
-      '@zag-js/types': 0.78.3
+      '@zag-js/core': 0.81.1
+      '@zag-js/store': 0.81.1
+      '@zag-js/types': 0.81.1
       vue: 3.5.13(typescript@5.7.2)
 
   abbrev@2.0.0: {}
