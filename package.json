@@ -21,7 +21,7 @@
     "@heroicons/vue": "2.2.0",
     "@sentry/nuxt": "8.45.1",
     "@zag-js/dialog": "0.81.2",
-    "@zag-js/vue": "0.81.1",
+    "@zag-js/vue": "0.81.2",
     "autoprefixer": "10.4.20",
     "lucide-vue-next": "0.471.0",
     "postcss": "8.4.49",
