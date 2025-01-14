@@ -33,6 +33,7 @@
       </footer>
     </div>
     <Teleport to="body">
+      <ScreenSaver v-model="isScreenSaverActive" @click="setNoActionTimer" />
       <PaymentMethodSelectionModal
         v-model="isPaymentMethodSelectionModalOpen"
         @select="
@@ -46,20 +47,28 @@
           }
         "
       />
-      <CashPaymentModal v-model="isCashPaymentModalOpen" :total="total" @payment="(payment)=>{
-        cashePayment = payment;
-        isCashPaymentModalOpen = false;
-        isChangeDisplayModalOpen = true;
-      }" />
+      <CashPaymentModal
+        v-model="isCashPaymentModalOpen"
+        :total="total"
+        @payment="
+          (payment) => {
+            cashePayment = payment;
+            isCashPaymentModalOpen = false;
+            isChangeDisplayModalOpen = true;
+          }
+        "
+      />
       <ChangeDisplayModal
         v-model="isChangeDisplayModalOpen"
         :total="total"
         :payment="cashePayment"
-        @paid="() => {
-          isChangeDisplayModalOpen = false;
-          cashePayment = 0;
-          items = [];
-        }"
+        @paid="
+          () => {
+            isChangeDisplayModalOpen = false;
+            cashePayment = 0;
+            items = [];
+          }
+        "
       />
     </Teleport>
   </div>
@@ -69,16 +78,20 @@
 import type { Item } from "./schemas/item";
 import { getFormattedPrice } from "./utils/numberFormat";
 
+const SCREEN_SAVER_TIMEOUT = 30000;
+
 const initialData = ref<Item[]>([]);
 const items = ref<Item[]>(initialData.value);
 const initialValue = ref("");
 const value = ref("");
 const lastTime = ref(0);
 const itemList = useTemplateRef("itemList");
+const isScreenSaverActive = ref(false);
 const isPaymentMethodSelectionModalOpen = ref(false);
 const isCashPaymentModalOpen = ref(false);
 const isChangeDisplayModalOpen = ref(false);
 const cashePayment = ref(0);
+const noActionTimer = ref<null | number>(null);
 
 useHead({
   link: [
@@ -94,6 +107,36 @@ useHead({
     },
   ],
 });
+
+const isAnyModalOpen = computed(
+  () =>
+    isPaymentMethodSelectionModalOpen.value ||
+    isCashPaymentModalOpen.value ||
+    isChangeDisplayModalOpen.value
+);
+
+// 30秒間操作がない場合はスクリーンセーバーを表示
+const noActionHandler = () => {
+  // モーダル表示中は延長
+  if (isAnyModalOpen.value) {
+    setNoActionTimer();
+    return;
+  }
+
+  // 30秒間操作がない場合はスクリーンセーバーを表示
+  isScreenSaverActive.value = true;
+};
+
+// 30秒間操作がないことを検知する
+const setNoActionTimer = () => {
+  if (noActionTimer.value) {
+    clearTimeout(noActionTimer.value);
+  }
+  noActionTimer.value = window.setTimeout(
+    noActionHandler,
+    SCREEN_SAVER_TIMEOUT
+  );
+};
 
 // USBバーコードリーダの読み取りを受け取る
 const handleKeypress = async (e: KeyboardEvent) => {
@@ -124,10 +167,19 @@ const handleKeypress = async (e: KeyboardEvent) => {
 
 onMounted(() => {
   window.addEventListener("keypress", handleKeypress);
+  setNoActionTimer();
 });
 
 onUnmounted(() => {
   window.removeEventListener("keypress", handleKeypress);
+  if (noActionTimer.value) {
+    window.clearTimeout(noActionTimer.value);
+    noActionTimer.value = null;
+  }
+});
+
+watch(items, () => {
+  setNoActionTimer();
 });
 
 const total = computed(() =>
