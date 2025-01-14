@@ -52,7 +52,7 @@
         :total="total"
         @payment="
           (payment) => {
-            cashePayment = payment;
+            cashPayment = payment;
             isCashPaymentModalOpen = false;
             isChangeDisplayModalOpen = true;
           }
@@ -61,11 +61,11 @@
       <ChangeDisplayModal
         v-model="isChangeDisplayModalOpen"
         :total="total"
-        :payment="cashePayment"
+        :payment="cashPayment"
         @paid="
           () => {
             isChangeDisplayModalOpen = false;
-            cashePayment = 0;
+            cashPayment = 0;
             items = [];
           }
         "
@@ -90,7 +90,7 @@ const isScreenSaverActive = ref(false);
 const isPaymentMethodSelectionModalOpen = ref(false);
 const isCashPaymentModalOpen = ref(false);
 const isChangeDisplayModalOpen = ref(false);
-const cashePayment = ref(0);
+const cashPayment = ref(0);
 const noActionTimer = ref<null | number>(null);
 
 useHead({

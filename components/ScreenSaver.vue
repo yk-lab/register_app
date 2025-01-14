@@ -28,8 +28,8 @@ const currentImage = computed(() => images.value[currentImageIndex.value]);
 
 const fetchImages = async () => {
   try {
-    // 画像リストをAPIから取得
-    // const response = await fetch("https://api.example.com/images"); // 実際のAPIエンドポイントに変更
+    // TODO: 画像リストをAPIから取得
+    // const response = await fetch("https://api.example.com/images");
     // const data = await response.json();
     const width = window.innerWidth || 1920;
     // const height = window.innerHeight || 1080;
