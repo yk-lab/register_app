@@ -31,14 +31,14 @@ const fetchImages = async () => {
     // TODO: 画像リストをAPIから取得
     // const response = await fetch("https://api.example.com/images");
     // const data = await response.json();
-    const width = window.innerWidth || 1920;
-    // const height = window.innerHeight || 1080;
+    const width = window.innerWidth || 1024;
+    const height = window.innerHeight || 600;
     const data = [
-      `https://picsum.photos/${width}?1`,
-      `https://picsum.photos/${width}?2`,
-      `https://picsum.photos/${width}?3`,
-      `https://picsum.photos/${width}?4`,
-      `https://picsum.photos/${width}?5`,
+      `https://picsum.photos/${width}/${height}/?1`,
+      `https://picsum.photos/${width}/${height}/?2`,
+      `https://picsum.photos/${width}/${height}/?3`,
+      `https://picsum.photos/${width}/${height}/?4`,
+      `https://picsum.photos/${width}/${height}/?5`,
     ];
 
     // ブラウザで事前読み込み
