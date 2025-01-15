@@ -4,17 +4,29 @@
     @click="$emit('update:modelValue', false)"
     class="fixed inset-0 flex items-center justify-center bg-black/90 z-50"
   >
-    <img
-      v-if="currentImage"
-      :src="currentImage"
-      alt="スクリーンセーバー画像"
-      class="max-w-full max-h-full object-contain"
-    />
+    <div class="relative w-full h-full">
+      <img
+        v-for="(image, i) in images"
+        :key="i"
+        :src="image"
+        alt="スクリーンセーバー画像"
+        class="max-w-full max-h-full object-contain absolute top-0 left-0 transition-opacity duration-500"
+        :class="i === currentImageIndex ? 'opacity-100' : 'opacity-0'"
+      />
+    </div>
+
+    <div
+      class="absolute bottom-24 w-full h-16 bg-black/70 backdrop-filter backdrop-blur-md overflow-hidden flex justify-center items-center"
+    >
+      <div class="whitespace-nowrap animate-scroll text-white text-lg w-full">
+        <span> 利用を再開するには画面に触れてください </span>
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { SCREEN_SAVER_CONSTANTS } from '~/constants/screen-saver';
+import { SCREEN_SAVER_CONSTANTS } from "~/constants/screen-saver";
 
 const isActive = defineModel({ required: true, type: Boolean });
 const images = ref<string[]>([]); // 画像URLのリスト
@@ -23,8 +35,6 @@ const slideInterval = ref<number | null>(null); // スライドショー用タ�
 const slideDuration = SCREEN_SAVER_CONSTANTS.SLIDE_DURATION; // 画像表示の間隔
 const apiFetchInterval = SCREEN_SAVER_CONSTANTS.API_FETCH_INTERVAL; // API再取得間隔
 const apiFetchTimer = ref<number | null>(null); // API再取得用タイマー
-
-const currentImage = computed(() => images.value[currentImageIndex.value]);
 
 const fetchImages = async () => {
   try {
