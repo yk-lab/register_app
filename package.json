@@ -27,6 +27,7 @@
     "@zag-js/dialog": "0.81.2",
     "@zag-js/vue": "0.81.2",
     "autoprefixer": "10.4.20",
+    "handlebars": "4.7.8",
     "lucide-vue-next": "0.471.0",
     "postcss": "8.5.1",
     "simple-keyboard": "3.8.29",

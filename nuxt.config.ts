@@ -4,6 +4,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   runtimeConfig: {
     itemApiUrl: '',
+    screenSaveImageApiUrl: '',
     public: {
       sentry: {
         dsn: '',

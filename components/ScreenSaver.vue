@@ -26,7 +26,10 @@
 </template>
 
 <script lang="ts" setup>
+import Handlebars from "handlebars";
+
 import { SCREEN_SAVER_CONSTANTS } from "~/constants/screen-saver";
+import type { ScreenSaveImage } from "~/schemas/screen-save-image";
 
 const isActive = defineModel({ required: true, type: Boolean });
 const images = ref<string[]>([]); // 画像URLのリスト
@@ -38,18 +41,19 @@ const apiFetchTimer = ref<number | null>(null); // API再取得用タイマー
 
 const fetchImages = async () => {
   try {
-    // TODO: 画像リストをAPIから取得
-    // const response = await fetch("https://api.example.com/images");
-    // const data = await response.json();
+    const response = await $fetch<ScreenSaveImage[]>(
+      `/api/screen-save-images/`,
+      {
+        method: "GET",
+        responseType: "json",
+      }
+    );
     const width = window.innerWidth || 1024;
     const height = window.innerHeight || 600;
-    const data = [
-      `https://picsum.photos/${width}/${height}/?1`,
-      `https://picsum.photos/${width}/${height}/?2`,
-      `https://picsum.photos/${width}/${height}/?3`,
-      `https://picsum.photos/${width}/${height}/?4`,
-      `https://picsum.photos/${width}/${height}/?5`,
-    ];
+    const data = response.map((image) => {
+      const template = Handlebars.compile(image.url);
+      return template({ width, height, timestamp: Date.now() });
+    });
 
     // ブラウザで事前読み込み
     const preloadImages = data.map((url: string) => {
