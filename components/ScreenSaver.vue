@@ -79,10 +79,16 @@ const stopSlideShow = () => {
   }
 };
 
+// リサイズ時の処理
+const handleResize = () => {
+  fetchImages();
+};
+
 onMounted(() => {
   // 初期化処理
   fetchImages(); // 画像リストの初回取得
   setupApiFetchTimer(); // 定期的なAPI再取得タイマーをセット
+  window.addEventListener("resize", handleResize); // リサイズ時に画像リストを再取得
 });
 
 onBeforeUnmount(() => {
@@ -95,6 +101,7 @@ onBeforeUnmount(() => {
     clearInterval(apiFetchTimer.value);
     apiFetchTimer.value = null;
   }
+  window.removeEventListener("resize", handleResize);
 });
 
 watch(isActive, (newIsActive) => {
