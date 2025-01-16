@@ -15,6 +15,15 @@ export default {
     extend: {
       fontFamily: {
         sans: ['InterVariable', ...defaultTheme.fontFamily.sans],
+      },
+      animation: {
+        'scroll': 'scroll 18s linear infinite',
+      },
+      keyframes: {
+        'scroll': {
+          '0%': { transform: 'translateX(100%)' },
+          '100%': { transform: 'translateX(-100%)' },
+        }
       }
     },
   },
