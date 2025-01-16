@@ -30,6 +30,9 @@ import Handlebars from "handlebars";
 
 import { SCREEN_SAVER_CONSTANTS } from "~/constants/screen-saver";
 import type { ScreenSaveImage } from "~/schemas/screen-save-image";
+import { debounce } from "es-toolkit";
+
+const RESIZE_DEBOUNCE_DELAY = 300; // milliseconds
 
 const isActive = defineModel({ required: true, type: Boolean });
 const images = ref<string[]>([]); // 画像URLのリスト
@@ -93,18 +96,6 @@ const stopSlideShow = () => {
   }
 };
 
-function debounce(func: (...args: any[]) => void, wait: number): () => void {
-  let timeout: ReturnType<typeof setTimeout> | undefined;
-  return function executedFunction(...args: any[]) {
-    const later = () => {
-      clearTimeout(timeout);
-      func(...args);
-    };
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-  };
-}
-
 // リサイズ時の処理
 const handleResize = debounce(() => {
   fetchImages();
@@ -127,6 +118,7 @@ onBeforeUnmount(() => {
     clearInterval(apiFetchTimer.value);
     apiFetchTimer.value = null;
   }
+  handleResize.cancel();
   window.removeEventListener("resize", handleResize);
 });
 
