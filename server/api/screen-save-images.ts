@@ -9,5 +9,7 @@ export default defineEventHandler(async () => {
 
   return await $fetch<ScreenSaveImage[]>(runtimeConfig.screenSaveImageApiUrl, {
     responseType: "json",
+  }).catch((e) => {
+    throw e;
   });
 })
