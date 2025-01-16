@@ -30,6 +30,9 @@ import Handlebars from "handlebars";
 
 import { SCREEN_SAVER_CONSTANTS } from "~/constants/screen-saver";
 import type { ScreenSaveImage } from "~/schemas/screen-save-image";
+import { debounce } from "es-toolkit";
+
+const RESIZE_DEBOUNCE_DELAY = 300; // milliseconds
 
 const isActive = defineModel({ required: true, type: Boolean });
 const images = ref<string[]>([]); // 画像URLのリスト
@@ -94,9 +97,9 @@ const stopSlideShow = () => {
 };
 
 // リサイズ時の処理
-const handleResize = () => {
+const handleResize = debounce(() => {
   fetchImages();
-};
+}, 300);
 
 onMounted(() => {
   // 初期化処理
@@ -115,6 +118,7 @@ onBeforeUnmount(() => {
     clearInterval(apiFetchTimer.value);
     apiFetchTimer.value = null;
   }
+  handleResize.cancel();
   window.removeEventListener("resize", handleResize);
 });
 
