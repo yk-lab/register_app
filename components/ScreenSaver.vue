@@ -93,10 +93,22 @@ const stopSlideShow = () => {
   }
 };
 
+function debounce(func: (...args: any[]) => void, wait: number): () => void {
+  let timeout: ReturnType<typeof setTimeout> | undefined;
+  return function executedFunction(...args: any[]) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
 // リサイズ時の処理
-const handleResize = () => {
+const handleResize = debounce(() => {
   fetchImages();
-};
+}, 300);
 
 onMounted(() => {
   // 初期化処理
