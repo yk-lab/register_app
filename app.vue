@@ -179,6 +179,7 @@ onUnmounted(() => {
 });
 
 watch(items, () => {
+  isScreenSaverActive.value = false;
   setNoActionTimer();
 });
 
