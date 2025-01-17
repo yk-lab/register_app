@@ -4,6 +4,7 @@ export default defineEventHandler(async () => {
   const runtimeConfig = useRuntimeConfig();
 
   if (!runtimeConfig.screenSaveImageApiUrl) {
+    console.error("screenSaveImageApiUrl is not defined in runtime config");
     return [];
   }
 
