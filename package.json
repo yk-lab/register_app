@@ -24,7 +24,7 @@
     "@headlessui/vue": "1.7.23",
     "@heroicons/vue": "2.2.0",
     "@sentry/nuxt": "8.50.0",
-    "@zag-js/dialog": "0.81.2",
+    "@zag-js/dialog": "0.82.1",
     "@zag-js/vue": "0.81.2",
     "autoprefixer": "10.4.20",
     "es-toolkit": "1.31.0",
