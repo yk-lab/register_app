@@ -1,40 +1,40 @@
 {
-  "name": "nuxt-app",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
-  },
-  "dependencies": {
-    "nuxt": "^3.15.1",
-    "vue": "^3.5.13",
-    "vue-router": "^4.5.0"
-  },
-  "packageManager": "pnpm@9.15.3+sha512.1f79bc245a66eb0b07c5d4d83131240774642caaa86ef7d0434ab47c0d16f66b04e21e0c086eb61e62c77efc4d7f7ec071afad3796af64892fae66509173893a",
-  "engines": {
-    "node": "~22.12",
-    "preinstall": "npx only-allow pnpm"
-  },
-  "devDependencies": {
-    "@formkit/auto-animate": "0.8.2",
-    "@headlessui/vue": "1.7.23",
-    "@heroicons/vue": "2.2.0",
-    "@sentry/nuxt": "8.50.0",
-    "@zag-js/dialog": "0.81.2",
-    "@zag-js/vue": "0.81.2",
-    "autoprefixer": "10.4.20",
-    "es-toolkit": "1.31.0",
-    "handlebars": "4.7.8",
-    "lucide-vue-next": "0.471.0",
-    "notyf": "3.10.0",
-    "postcss": "8.5.1",
-    "simple-keyboard": "3.8.29",
-    "tailwindcss": "3.4.17",
-    "uqr": "0.1.2",
-    "zod": "3.24.1"
-  }
+	"name": "nuxt-app",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"build": "nuxt build",
+		"dev": "nuxt dev",
+		"generate": "nuxt generate",
+		"preview": "nuxt preview",
+		"postinstall": "nuxt prepare"
+	},
+	"dependencies": {
+		"nuxt": "^3.15.1",
+		"vue": "^3.5.13",
+		"vue-router": "^4.5.0"
+	},
+	"packageManager": "pnpm@9.15.4+sha512.b2dc20e2fc72b3e18848459b37359a32064663e5627a51e4c74b2c29dd8e8e0491483c3abb40789cfd578bf362fb6ba8261b05f0387d76792ed6e23ea3b1b6a0",
+	"engines": {
+		"node": "~22.12",
+		"preinstall": "npx only-allow pnpm"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"@formkit/auto-animate": "0.8.2",
+		"@headlessui/vue": "1.7.23",
+		"@sentry/nuxt": "8.50.0",
+		"autoprefixer": "10.4.20",
+		"es-toolkit": "1.31.0",
+		"handlebars": "4.7.8",
+		"lucide-vue-next": "0.471.0",
+		"notyf": "3.10.0",
+		"postcss": "8.5.1",
+		"rollup-plugin-webpack-stats": "2.0.1",
+		"simple-keyboard": "3.8.29",
+		"tailwindcss": "3.4.17",
+		"uqr": "0.1.2",
+		"vue-tsc": "2.2.0",
+		"zod": "3.24.1"
+	}
 }

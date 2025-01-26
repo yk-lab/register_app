@@ -92,19 +92,19 @@
 
 <script setup lang="ts">
 import {
-  Dialog,
-  DialogPanel,
-  DialogTitle,
-  TransitionChild,
-  TransitionRoot,
+	Dialog,
+	DialogPanel,
+	DialogTitle,
+	TransitionChild,
+	TransitionRoot,
 } from "@headlessui/vue";
 import { HandCoins, QrCode, WalletMinimal, X } from "lucide-vue-next";
 
-const PAYMENT_METHODS = ['cash', 'original-prepaid'] as const;
-type PaymentMethod = typeof PAYMENT_METHODS[number];
+const PAYMENT_METHODS = ["cash", "original-prepaid"] as const;
+type PaymentMethod = (typeof PAYMENT_METHODS)[number];
 
 defineEmits<{
-  select: [paymentMethod: PaymentMethod];
+	select: [paymentMethod: PaymentMethod];
 }>();
 
 const config = useRuntimeConfig();
