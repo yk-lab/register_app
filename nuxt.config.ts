@@ -5,10 +5,15 @@ export default defineNuxtConfig({
   runtimeConfig: {
     itemApiUrl: '',
     screenSaveImageApiUrl: '',
+    originalPrepaidPaymentApiKey: '',
     public: {
       sentry: {
         dsn: '',
-      }
+      },
+      originalPrepaidPayment: {
+        url: '',
+        name: '',
+      },
     },
   },
   modules: [

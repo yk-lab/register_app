@@ -43,36 +43,20 @@
                 <div
                   class="mx-auto flex size-12 items-center justify-center rounded-full bg-blue-100"
                 >
-                  <WalletMinimal
-                    class="size-6 text-blue-600"
-                    aria-hidden="true"
-                  />
+                  <QrCode class="size-6 text-blue-600" aria-hidden="true" />
                 </div>
                 <div class="mt-3 text-center sm:mt-5">
                   <DialogTitle
                     as="h3"
                     class="text-base font-semibold text-gray-900"
                   >
-                    支払い方法を選択
+                    {{ config.public.originalPrepaidPayment.name }}支払い
                   </DialogTitle>
-                  <div class="mt-2 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
-                    <button
-                      type="button"
-                      class="inline-flex items-center gap-x-4 rounded-md bg-orange-500 px-7 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
-                      @click="$emit('select', 'cash')"
-                    >
-                      <HandCoins class="-ml-0.5 size-5" aria-hidden="true" />
-                      現金
-                    </button>
-                    <button
-                      v-if="config.public.originalPrepaidPayment.url"
-                      type="button"
-                      class="inline-flex items-center gap-x-4 rounded-md bg-orange-500 px-7 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
-                      @click="$emit('select', 'original-prepaid')"
-                    >
-                      <QrCode class="-ml-0.5 size-5" aria-hidden="true" />
-                      {{ config.public.originalPrepaidPayment.name }}
-                    </button>
+                  <div v-if="qrCode" class="mt-2">
+                    <p>QRコードを読み取ってください。</p>
+                    <div class="mt-2">
+                      <div v-html="qrCode" class="mx-auto w-64 h-64"></div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -92,12 +76,63 @@ import {
   TransitionChild,
   TransitionRoot,
 } from "@headlessui/vue";
-import { HandCoins, QrCode, WalletMinimal, X } from "lucide-vue-next";
+import { QrCode, X } from "lucide-vue-next";
+import "simple-keyboard/build/css/index.css";
+import type { Transaction } from "~/schemas/transaction";
+import { renderSVG } from "uqr";
 
-defineEmits<{
-  select: [paymentMethod: "cash" | "original-prepaid"];
+const { txnId, url } = defineProps<{
+  txnId: string | null;
+  url: string | null;
 }>();
+
+const emits = defineEmits<{ paid: [] }>();
 
 const config = useRuntimeConfig();
 const open = defineModel({ required: true, type: Boolean });
+const interval = ref<number | null>(null);
+
+const qrCode = computed(() => {
+  if (!url) {
+    return "";
+  }
+
+  return renderSVG(url, {});
+});
+
+watch(open, (value) => {
+  if (value) {
+    interval.value = window.setInterval(async () => {
+      if (!txnId) {
+        return;
+      }
+
+      const txn = await $fetch<Transaction>(
+        `/api/original-prepaid-payment/${txnId}/`,
+        {
+          method: "GET",
+        }
+      );
+      if (txn.status === "completed") {
+        if (interval.value) {
+          clearInterval(interval.value);
+          interval.value = null;
+        }
+        emits("paid");
+      }
+    }, 1000);
+  } else {
+    if (interval.value) {
+      clearInterval(interval.value);
+      interval.value = null;
+    }
+  }
+});
+
+onUnmounted(() => {
+  if (interval.value) {
+    clearInterval(interval.value);
+    interval.value = null;
+  }
+});
 </script>

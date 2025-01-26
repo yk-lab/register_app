@@ -57,6 +57,9 @@ importers:
       tailwindcss:
         specifier: 3.4.17
         version: 3.4.17
+      uqr:
+        specifier: 0.1.2
+        version: 0.1.2
       zod:
         specifier: 3.24.1
         version: 3.24.1

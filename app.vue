@@ -43,6 +43,12 @@
               case 'cash':
                 isCashPaymentModalOpen = true;
                 break;
+              case 'original-prepaid':
+                // TODO: 読み込み待ちのスピナーを表示
+                fetchOriginalPrepaidPaymentUrl().then(() => {
+                  isOriginalPrepaidPaymentModalOpen = true;
+                });
+                break;
             }
           }
         "
@@ -70,6 +76,18 @@
           }
         "
       />
+      <OriginalPrepaidPaymentModal
+        v-if="config.public.originalPrepaidPayment.url"
+        :txn-id="originalPrepaidPaymentTxnId"
+        :url="originalPrepaidPaymentUrl"
+        @paid="
+          () => {
+            isOriginalPrepaidPaymentModalOpen = false;
+            items = [];
+          }
+        "
+        v-model="isOriginalPrepaidPaymentModalOpen"
+      />
     </Teleport>
   </div>
 </template>
@@ -77,6 +95,7 @@
 <script setup lang="ts">
 import type { Item } from "./schemas/item";
 import { getFormattedPrice } from "./utils/numberFormat";
+import type { CreateTransactionApiRequest } from "./schemas/create-transaction-api";
 
 const SCREEN_SAVER_TIMEOUT = 30000;
 
@@ -91,6 +110,9 @@ const isPaymentMethodSelectionModalOpen = ref(false);
 const isCashPaymentModalOpen = ref(false);
 const isChangeDisplayModalOpen = ref(false);
 const cashPayment = ref(0);
+const isOriginalPrepaidPaymentModalOpen = ref(false);
+const originalPrepaidPaymentTxnId = ref<string | null>(null);
+const originalPrepaidPaymentUrl = ref<string | null>(null);
 const noActionTimer = ref<null | number>(null);
 
 useHead({
@@ -108,11 +130,14 @@ useHead({
   ],
 });
 
+const config = useRuntimeConfig();
+
 const isAnyModalOpen = computed(
   () =>
     isPaymentMethodSelectionModalOpen.value ||
     isCashPaymentModalOpen.value ||
-    isChangeDisplayModalOpen.value
+    isChangeDisplayModalOpen.value ||
+    isOriginalPrepaidPaymentModalOpen.value
 );
 
 // 30秒間操作がない場合はスクリーンセーバーを表示
@@ -165,6 +190,45 @@ const handleKeypress = async (e: KeyboardEvent) => {
   }
 };
 
+// オリジナルプリペイド決済のURLを取得
+const fetchOriginalPrepaidPaymentUrl = async () => {
+  try {
+    const data = await $fetch<{ transactionId: string; url: string }>(
+      "/api/original-prepaid-payment/",
+      {
+        method: "POST",
+        responseType: "json",
+        body: {
+          totalAmount: total.value,
+          details: items.value.reduce((acc, item) => {
+            const existingItem = acc.findIndex(
+              (accItem) => accItem.productId === item.jan_code
+            );
+            if (existingItem !== -1) {
+              acc[existingItem].quantity += 1;
+              return acc;
+            }
+            acc.push({
+              productId: item.jan_code,
+              name: item.name,
+              price: item.price,
+              quantity: 1,
+            });
+            return acc;
+          }, [] as CreateTransactionApiRequest["details"]),
+          paymentMethod: "prepaid",
+        } as CreateTransactionApiRequest,
+      }
+    );
+    originalPrepaidPaymentTxnId.value = data.transactionId;
+    originalPrepaidPaymentUrl.value = data.url;
+  } catch (e) {
+    console.error(e);
+    originalPrepaidPaymentTxnId.value = null;
+    originalPrepaidPaymentUrl.value = null;
+  }
+};
+
 onMounted(() => {
   window.addEventListener("keypress", handleKeypress);
   setNoActionTimer();
@@ -178,7 +242,7 @@ onUnmounted(() => {
   }
 });
 
-watch(items, () => {
+watch(items.value, () => {
   isScreenSaverActive.value = false;
   setNoActionTimer();
 });
