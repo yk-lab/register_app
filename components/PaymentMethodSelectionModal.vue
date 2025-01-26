@@ -55,10 +55,13 @@
                   >
                     支払い方法を選択
                   </DialogTitle>
-                  <div class="mt-2 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
+                  <div class="mt-2 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6" role="radiogroup">
                     <button
                       type="button"
                       class="inline-flex items-center gap-x-4 rounded-md bg-orange-500 px-7 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
+                      role="radio"
+                      :aria-checked="false"
+                      aria-label="現金で支払う"
                       @click="$emit('select', 'cash')"
                     >
                       <HandCoins class="-ml-0.5 size-5" aria-hidden="true" />
@@ -68,7 +71,8 @@
                       v-if="config.public.originalPrepaidPayment.url"
                       type="button"
                       class="inline-flex items-center gap-x-4 rounded-md bg-orange-500 px-7 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
-                      role="button"
+                      role="radio"
+                      :aria-checked="false"
                       :aria-label="`${ config.public.originalPrepaidPayment.name }で支払う`"
                       @click="$emit('select', 'original-prepaid')"
                     >

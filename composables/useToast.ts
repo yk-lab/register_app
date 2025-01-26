@@ -1,4 +1,5 @@
 import { Notyf } from "notyf";
+import type { INotyfNotificationOptions, DeepPartial } from "notyf";
 
 const getToast = () => {
 	return new Notyf({
@@ -10,9 +11,11 @@ const getToast = () => {
 };
 
 export const useToast = (toast: Notyf = getToast()) => {
+	type ToastMessage = string | Partial<INotyfNotificationOptions>;
+
 	return {
-		open: toast.open.bind(toast),
-		success: toast.success.bind(toast),
-		error: toast.error.bind(toast),
+		open: (payload: DeepPartial<INotyfNotificationOptions>) => toast.open(payload),
+		success: (payload: ToastMessage) => toast.success(payload),
+		error: (payload: ToastMessage) => toast.error(payload),
 	};
 };

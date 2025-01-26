@@ -84,6 +84,9 @@ import { renderSVG } from "uqr";
 /**
  * オリジナル前払い決済モーダル
  * @component
+ * @description QRコードを表示して前払い決済を処理するモーダルコンポーネント
+ * @emits {void} paid - 支払いが完了した時に発火
+ * @emits {void} update:modelValue - モーダルの表示状態が変更された時に発火
  */
 const { txnId, url } = defineProps<{
   /** トランザクションID */

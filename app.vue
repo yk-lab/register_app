@@ -182,6 +182,7 @@ const handleKeypress = async (e: KeyboardEvent) => {
   }
   lastTime.value = now;
   if (e.key === "Enter") {
+    value.value = "4902431302288";
     const data = await $fetch<Item>(`/api/items/${value.value}/`, {
       method: "GET",
       responseType: "json",
