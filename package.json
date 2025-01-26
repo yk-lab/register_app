@@ -31,7 +31,7 @@
 		"notyf": "3.10.0",
 		"postcss": "8.5.1",
 		"rollup-plugin-webpack-stats": "2.0.1",
-		"simple-keyboard": "3.8.29",
+		"simple-keyboard": "3.8.30",
 		"tailwindcss": "3.4.17",
 		"uqr": "0.1.2",
 		"vue-tsc": "2.2.0",
