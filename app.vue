@@ -33,15 +33,34 @@
       </footer>
     </div>
     <Teleport to="body">
+      <LoadingOverlay v-model="isLoading" />
       <ScreenSaver v-model="isScreenSaverActive" @click="setNoActionTimer" />
       <PaymentMethodSelectionModal
         v-model="isPaymentMethodSelectionModalOpen"
         @select="
-          (method) => {
+          async (method) => {
             isPaymentMethodSelectionModalOpen = false;
             switch (method) {
               case 'cash':
                 isCashPaymentModalOpen = true;
+                break;
+              case 'original-prepaid':
+                isLoading = true;
+                try {
+                  await fetchOriginalPrepaidPaymentUrl();
+                  isOriginalPrepaidPaymentModalOpen = true;
+                } catch (e) {
+                  console.error(e);
+                  const errorMessage =
+                    e instanceof Error
+                      ? e.message
+                      : '決済の初期化に失敗しました';
+                  toast.error({
+                    message: errorMessage,
+                  });
+                } finally {
+                  isLoading = false;
+                }
                 break;
             }
           }
@@ -67,8 +86,22 @@
             isChangeDisplayModalOpen = false;
             cashPayment = 0;
             items = [];
+            toast.success('ご利用ありがとうございました。');
           }
         "
+      />
+      <OriginalPrepaidPaymentModal
+        v-if="config.public.originalPrepaidPayment.url"
+        :txn-id="originalPrepaidPaymentTxnId"
+        :url="originalPrepaidPaymentUrl"
+        @paid="
+          () => {
+            isOriginalPrepaidPaymentModalOpen = false;
+            items = [];
+            toast.success('ご利用ありがとうございました。');
+          }
+        "
+        v-model="isOriginalPrepaidPaymentModalOpen"
       />
     </Teleport>
   </div>
@@ -77,9 +110,14 @@
 <script setup lang="ts">
 import type { Item } from "./schemas/item";
 import { getFormattedPrice } from "./utils/numberFormat";
+import type { CreateTransactionApiRequest } from "./schemas/create-transaction-api";
+import "notyf/notyf.min.css";
 
 const SCREEN_SAVER_TIMEOUT = 30000;
 
+const toast = useToast();
+
+const isLoading = ref(false);
 const initialData = ref<Item[]>([]);
 const items = ref<Item[]>(initialData.value);
 const initialValue = ref("");
@@ -91,6 +129,9 @@ const isPaymentMethodSelectionModalOpen = ref(false);
 const isCashPaymentModalOpen = ref(false);
 const isChangeDisplayModalOpen = ref(false);
 const cashPayment = ref(0);
+const isOriginalPrepaidPaymentModalOpen = ref(false);
+const originalPrepaidPaymentTxnId = ref<string | null>(null);
+const originalPrepaidPaymentUrl = ref<string | null>(null);
 const noActionTimer = ref<null | number>(null);
 
 useHead({
@@ -108,11 +149,14 @@ useHead({
   ],
 });
 
+const config = useRuntimeConfig();
+
 const isAnyModalOpen = computed(
   () =>
     isPaymentMethodSelectionModalOpen.value ||
     isCashPaymentModalOpen.value ||
-    isChangeDisplayModalOpen.value
+    isChangeDisplayModalOpen.value ||
+    isOriginalPrepaidPaymentModalOpen.value
 );
 
 // 30秒間操作がない場合はスクリーンセーバーを表示
@@ -165,6 +209,50 @@ const handleKeypress = async (e: KeyboardEvent) => {
   }
 };
 
+// オリジナルプリペイド決済のURLを取得
+const fetchOriginalPrepaidPaymentUrl = async () => {
+  try {
+    const data = await $fetch<{ transactionId: string; url: string }>(
+      "/api/original-prepaid-payment/",
+      {
+        method: "POST",
+        responseType: "json",
+        body: {
+          totalAmount: total.value,
+          details: items.value.reduce((acc, item) => {
+            const existingItem = acc.findIndex(
+              (accItem) => accItem.productId === item.jan_code
+            );
+            if (existingItem !== -1) {
+              acc[existingItem].quantity += 1;
+              return acc;
+            }
+            acc.push({
+              productId: item.jan_code,
+              name: item.name,
+              price: item.price,
+              quantity: 1,
+            });
+            return acc;
+          }, [] as CreateTransactionApiRequest["details"]),
+          paymentMethod: "prepaid",
+        } as CreateTransactionApiRequest,
+      }
+    );
+    originalPrepaidPaymentTxnId.value = data.transactionId;
+    originalPrepaidPaymentUrl.value = data.url;
+  } catch (e) {
+    console.error(e);
+    originalPrepaidPaymentTxnId.value = null;
+    originalPrepaidPaymentUrl.value = null;
+    const errorMessage =
+      e instanceof Error ? e.message : "決済の初期化に失敗しました";
+    useToast().error({
+      message: errorMessage,
+    });
+  }
+};
+
 onMounted(() => {
   window.addEventListener("keypress", handleKeypress);
   setNoActionTimer();
@@ -178,7 +266,7 @@ onUnmounted(() => {
   }
 });
 
-watch(items, () => {
+watch(items.value, () => {
   isScreenSaverActive.value = false;
   setNoActionTimer();
 });

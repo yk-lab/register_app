@@ -1,6 +1,6 @@
 <template>
   <TransitionRoot as="template" :show="open">
-    <Dialog class="relative z-10" @close="open = false">
+    <Dialog class="relative z-10" @close="open = false" aria-label="前払い決済">
       <TransitionChild
         as="template"
         enter="ease-out duration-300"
@@ -29,7 +29,7 @@
             <DialogPanel
               class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-xl sm:p-6"
             >
-              <div class="absolute right-0 top-0 hidden pr-4 pt-4 sm:block">
+              <div class="absolute right-0 top-0 pr-4 pt-4">
                 <button
                   type="button"
                   class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
@@ -43,42 +43,20 @@
                 <div
                   class="mx-auto flex size-12 items-center justify-center rounded-full bg-blue-100"
                 >
-                  <WalletMinimal
-                    class="size-6 text-blue-600"
-                    aria-hidden="true"
-                  />
+                  <QrCode class="size-6 text-blue-600" aria-hidden="true" />
                 </div>
                 <div class="mt-3 text-center sm:mt-5">
                   <DialogTitle
                     as="h3"
                     class="text-base font-semibold text-gray-900"
                   >
-                    支払い方法を選択
+                    {{ config.public.originalPrepaidPayment.name }}支払い
                   </DialogTitle>
-                  <div class="mt-2 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6" role="radiogroup">
-                    <button
-                      type="button"
-                      class="inline-flex items-center gap-x-4 rounded-md bg-orange-500 px-7 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
-                      role="radio"
-                      :aria-checked="false"
-                      aria-label="現金で支払う"
-                      @click="$emit('select', 'cash')"
-                    >
-                      <HandCoins class="-ml-0.5 size-5" aria-hidden="true" />
-                      現金
-                    </button>
-                    <button
-                      v-if="config.public.originalPrepaidPayment.url"
-                      type="button"
-                      class="inline-flex items-center gap-x-4 rounded-md bg-orange-500 px-7 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
-                      role="radio"
-                      :aria-checked="false"
-                      :aria-label="`${ config.public.originalPrepaidPayment.name }で支払う`"
-                      @click="$emit('select', 'original-prepaid')"
-                    >
-                      <QrCode class="-ml-0.5 size-5" aria-hidden="true" />
-                      {{ config.public.originalPrepaidPayment.name }}
-                    </button>
+                  <div v-if="qrCode" class="mt-2">
+                    <p>QRコードを読み取ってください。</p>
+                    <div class="mt-2">
+                      <div v-html="qrCode" class="mx-auto w-64 h-64"></div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -98,15 +76,76 @@ import {
   TransitionChild,
   TransitionRoot,
 } from "@headlessui/vue";
-import { HandCoins, QrCode, WalletMinimal, X } from "lucide-vue-next";
+import { QrCode, X } from "lucide-vue-next";
+import "simple-keyboard/build/css/index.css";
+import type { Transaction } from "~/schemas/transaction";
+import { renderSVG } from "uqr";
 
-const PAYMENT_METHODS = ['cash', 'original-prepaid'] as const;
-type PaymentMethod = typeof PAYMENT_METHODS[number];
-
-defineEmits<{
-  select: [paymentMethod: PaymentMethod];
+/**
+ * オリジナル前払い決済モーダル
+ * @component
+ * @description QRコードを表示して前払い決済を処理するモーダルコンポーネント
+ * @emits {void} paid - 支払いが完了した時に発火
+ * @emits {void} update:modelValue - モーダルの表示状態が変更された時に発火
+ */
+const { txnId, url } = defineProps<{
+  /** トランザクションID */
+  txnId: string | null;
+  /** 決済用URL */
+  url: string | null;
 }>();
+
+/** 支払い完了時に発火するイベント */
+const emits = defineEmits<{ paid: [] }>();
 
 const config = useRuntimeConfig();
 const open = defineModel({ required: true, type: Boolean });
+const interval = ref<number | null>(null);
+
+/** ポーリング間隔をクリアする */
+const clearPollingInterval = () => {
+  if (interval.value) {
+    clearInterval(interval.value);
+    interval.value = null;
+  }
+};
+
+/** QRコードを描画 */
+const qrCode = computed(() => {
+  if (!url) {
+    return "";
+  }
+
+  return renderSVG(url, {});
+});
+
+watch(open, (value) => {
+  if (value) {
+    interval.value = window.setInterval(async () => {
+      if (!txnId) {
+        return;
+      }
+
+      const txn = await $fetch<Transaction>(
+        `/api/original-prepaid-payment/${txnId}/`,
+        {
+          method: "GET",
+        }
+      );
+      if (txn.status === "completed") {
+        if (interval.value) {
+          clearInterval(interval.value);
+          interval.value = null;
+        }
+        emits("paid");
+      }
+    }, 3000);
+  } else {
+    clearPollingInterval();
+  }
+});
+
+onUnmounted(() => {
+  clearPollingInterval();
+});
 </script>
