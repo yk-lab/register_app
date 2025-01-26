@@ -25,6 +25,13 @@ export default defineEventHandler(async (event) => {
     body: reqBody,
   });
 
+  if (!res.transactionId || !res.payUrl) {
+    throw createError({
+      statusCode: 500,
+      statusMessage: '不正なレスポンス形式です',
+    });
+  }
+
   return {
     transactionId: res.transactionId,
     url: res.payUrl,
