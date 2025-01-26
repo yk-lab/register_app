@@ -93,18 +93,18 @@
 
 <script setup lang="ts">
 import {
-  Dialog,
-  DialogPanel,
-  DialogTitle,
-  TransitionChild,
-  TransitionRoot,
+	Dialog,
+	DialogPanel,
+	DialogTitle,
+	TransitionChild,
+	TransitionRoot,
 } from "@headlessui/vue";
 import { HandCoins, X } from "lucide-vue-next";
 import Keyboard from "simple-keyboard";
 import "simple-keyboard/build/css/index.css";
 
 const { total } = defineProps<{
-  total: number;
+	total: number;
 }>();
 
 const emits = defineEmits<{ payment: [amount: number] }>();
@@ -115,37 +115,37 @@ const value = ref("");
 const keyboard = ref<Keyboard | null>(null);
 
 watch(open, async (newOpen) => {
-  if (newOpen) {
-    await nextTick();
-    if (keyboardRef.value) {
-      keyboard.value = new Keyboard(keyboardRef.value, {
-        onChange: (input) => {
-          value.value = input;
-        },
-        onKeyPress: (button) => {
-          if (button === "{enter}") {
-            const payment = parseInt(value.value, 10);
-            if (payment >= total) {
-              emits("payment", payment);
-            }
-          }
-        },
-        layout: {
-          default: ["1 2 3", "4 5 6", "7 8 9", "{bksp} 0 {enter}"],
-        },
-        theme: "hg-theme-default hg-layout-numeric numeric-theme",
-        display: {
-          "{bksp}": "←",
-          "{enter}": "確定",
-        },
-      });
-    }
-  } else {
-    if (keyboard.value) {
-      keyboard.value.destroy();
-      keyboard.value = null;
-    }
-    value.value = "";
-  }
+	if (newOpen) {
+		await nextTick();
+		if (keyboardRef.value) {
+			keyboard.value = new Keyboard(keyboardRef.value, {
+				onChange: (input) => {
+					value.value = input;
+				},
+				onKeyPress: (button) => {
+					if (button === "{enter}") {
+						const payment = Number.parseInt(value.value, 10);
+						if (payment >= total) {
+							emits("payment", payment);
+						}
+					}
+				},
+				layout: {
+					default: ["1 2 3", "4 5 6", "7 8 9", "{bksp} 0 {enter}"],
+				},
+				theme: "hg-theme-default hg-layout-numeric numeric-theme",
+				display: {
+					"{bksp}": "←",
+					"{enter}": "確定",
+				},
+			});
+		}
+	} else {
+		if (keyboard.value) {
+			keyboard.value.destroy();
+			keyboard.value = null;
+		}
+		value.value = "";
+	}
 });
 </script>

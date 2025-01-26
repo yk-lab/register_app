@@ -10,8 +10,7 @@
 		"ignore": ["node_modules", ".nuxt"]
 	},
 	"formatter": {
-		"enabled": true,
-		"indentStyle": "tab"
+		"enabled": true
 	},
 	"organizeImports": {
 		"enabled": true

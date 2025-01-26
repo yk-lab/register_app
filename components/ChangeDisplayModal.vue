@@ -77,21 +77,21 @@
 
 <script lang="ts" setup>
 import {
-  Dialog,
-  DialogPanel,
-  DialogTitle,
-  TransitionChild,
-  TransitionRoot,
+	Dialog,
+	DialogPanel,
+	DialogTitle,
+	TransitionChild,
+	TransitionRoot,
 } from "@headlessui/vue";
 import { HandCoins } from "lucide-vue-next";
 
 defineEmits<{
-  paid: [orderId: string];
+	paid: [orderId: string];
 }>();
 
 const { total, payment } = defineProps<{
-  total: number;
-  payment: number;
+	total: number;
+	payment: number;
 }>();
 
 const open = defineModel({ required: true, type: Boolean });

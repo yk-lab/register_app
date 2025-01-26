@@ -18,15 +18,15 @@
 </template>
 
 <script lang="ts" setup>
-import type { Item } from "../schemas/item";
 import { Delete } from "lucide-vue-next";
-import {getFormattedPrice} from "../utils/numberFormat";
+import type { Item } from "../schemas/item";
+import { getFormattedPrice } from "../utils/numberFormat";
 
 defineEmits<{
-  delete: [item: Item];
+	delete: [item: Item];
 }>();
 
 defineProps<{
-  item: Item;
+	item: Item;
 }>();
 </script>

@@ -70,16 +70,16 @@
 
 <script setup lang="ts">
 import {
-  Dialog,
-  DialogPanel,
-  DialogTitle,
-  TransitionChild,
-  TransitionRoot,
+	Dialog,
+	DialogPanel,
+	DialogTitle,
+	TransitionChild,
+	TransitionRoot,
 } from "@headlessui/vue";
 import { QrCode, X } from "lucide-vue-next";
 import "simple-keyboard/build/css/index.css";
-import type { Transaction } from "~/schemas/transaction";
 import { renderSVG } from "uqr";
+import type { Transaction } from "~/schemas/transaction";
 
 /**
  * オリジナル前払い決済モーダル
@@ -89,10 +89,10 @@ import { renderSVG } from "uqr";
  * @emits {void} update:modelValue - モーダルの表示状態が変更された時に発火
  */
 const { txnId, url } = defineProps<{
-  /** トランザクションID */
-  txnId: string | null;
-  /** 決済用URL */
-  url: string | null;
+	/** トランザクションID */
+	txnId: string | null;
+	/** 決済用URL */
+	url: string | null;
 }>();
 
 /** 支払い完了時に発火するイベント */
@@ -104,48 +104,48 @@ const interval = ref<number | null>(null);
 
 /** ポーリング間隔をクリアする */
 const clearPollingInterval = () => {
-  if (interval.value) {
-    clearInterval(interval.value);
-    interval.value = null;
-  }
+	if (interval.value) {
+		clearInterval(interval.value);
+		interval.value = null;
+	}
 };
 
 /** QRコードを描画 */
 const qrCode = computed(() => {
-  if (!url) {
-    return "";
-  }
+	if (!url) {
+		return "";
+	}
 
-  return renderSVG(url, {});
+	return renderSVG(url, {});
 });
 
 watch(open, (value) => {
-  if (value) {
-    interval.value = window.setInterval(async () => {
-      if (!txnId) {
-        return;
-      }
+	if (value) {
+		interval.value = window.setInterval(async () => {
+			if (!txnId) {
+				return;
+			}
 
-      const txn = await $fetch<Transaction>(
-        `/api/original-prepaid-payment/${txnId}/`,
-        {
-          method: "GET",
-        }
-      );
-      if (txn.status === "completed") {
-        if (interval.value) {
-          clearInterval(interval.value);
-          interval.value = null;
-        }
-        emits("paid");
-      }
-    }, 3000);
-  } else {
-    clearPollingInterval();
-  }
+			const txn = await $fetch<Transaction>(
+				`/api/original-prepaid-payment/${txnId}/`,
+				{
+					method: "GET",
+				},
+			);
+			if (txn.status === "completed") {
+				if (interval.value) {
+					clearInterval(interval.value);
+					interval.value = null;
+				}
+				emits("paid");
+			}
+		}, 3000);
+	} else {
+		clearPollingInterval();
+	}
 });
 
 onUnmounted(() => {
-  clearPollingInterval();
+	clearPollingInterval();
 });
 </script>

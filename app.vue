@@ -108,9 +108,9 @@
 </template>
 
 <script setup lang="ts">
+import type { CreateTransactionApiRequest } from "./schemas/create-transaction-api";
 import type { Item } from "./schemas/item";
 import { getFormattedPrice } from "./utils/numberFormat";
-import type { CreateTransactionApiRequest } from "./schemas/create-transaction-api";
 import "notyf/notyf.min.css";
 
 const SCREEN_SAVER_TIMEOUT = 30000;
@@ -135,143 +135,146 @@ const originalPrepaidPaymentUrl = ref<string | null>(null);
 const noActionTimer = ref<null | number>(null);
 
 useHead({
-  link: [
-    // https://tailwindui.com/documentation#:~:text=of%20Tailwind%20UI.-,Optional%3A%20Add%20the%20Inter%20font%20family,-We%27ve%20used%20Inter
-    // https://rsms.me/inter/
-    {
-      rel: "preconnect",
-      href: "https://rsms.me/",
-    },
-    {
-      rel: "stylesheet",
-      href: "https://rsms.me/inter/inter.css",
-    },
-  ],
+	link: [
+		// https://tailwindui.com/documentation#:~:text=of%20Tailwind%20UI.-,Optional%3A%20Add%20the%20Inter%20font%20family,-We%27ve%20used%20Inter
+		// https://rsms.me/inter/
+		{
+			rel: "preconnect",
+			href: "https://rsms.me/",
+		},
+		{
+			rel: "stylesheet",
+			href: "https://rsms.me/inter/inter.css",
+		},
+	],
 });
 
 const config = useRuntimeConfig();
 
 const isAnyModalOpen = computed(
-  () =>
-    isPaymentMethodSelectionModalOpen.value ||
-    isCashPaymentModalOpen.value ||
-    isChangeDisplayModalOpen.value ||
-    isOriginalPrepaidPaymentModalOpen.value
+	() =>
+		isPaymentMethodSelectionModalOpen.value ||
+		isCashPaymentModalOpen.value ||
+		isChangeDisplayModalOpen.value ||
+		isOriginalPrepaidPaymentModalOpen.value,
 );
 
 // 30秒間操作がない場合はスクリーンセーバーを表示
 const noActionHandler = () => {
-  // モーダル表示中は延長
-  if (isAnyModalOpen.value) {
-    setNoActionTimer();
-    return;
-  }
+	// モーダル表示中は延長
+	if (isAnyModalOpen.value) {
+		setNoActionTimer();
+		return;
+	}
 
-  // 30秒間操作がない場合はスクリーンセーバーを表示
-  isScreenSaverActive.value = true;
+	// 30秒間操作がない場合はスクリーンセーバーを表示
+	isScreenSaverActive.value = true;
 };
 
 // 30秒間操作がないことを検知する
 const setNoActionTimer = () => {
-  if (noActionTimer.value) {
-    clearTimeout(noActionTimer.value);
-  }
-  noActionTimer.value = window.setTimeout(
-    noActionHandler,
-    SCREEN_SAVER_TIMEOUT
-  );
+	if (noActionTimer.value) {
+		clearTimeout(noActionTimer.value);
+	}
+	noActionTimer.value = window.setTimeout(
+		noActionHandler,
+		SCREEN_SAVER_TIMEOUT,
+	);
 };
 
 // USBバーコードリーダの読み取りを受け取る
 const handleKeypress = async (e: KeyboardEvent) => {
-  const now = new Date().getTime();
-  if (now - lastTime.value > 100) {
-    value.value = initialValue.value;
-  }
-  lastTime.value = now;
-  if (e.key === "Enter") {
-    const data = await $fetch<Item>(`/api/items/${value.value}/`, {
-      method: "GET",
-      responseType: "json",
-    });
-    if (data) {
-      items.value.push(data);
+	const now = new Date().getTime();
+	if (now - lastTime.value > 100) {
+		value.value = initialValue.value;
+	}
+	lastTime.value = now;
+	if (e.key === "Enter") {
+		const data = await $fetch<Item>(`/api/items/${value.value}/`, {
+			method: "GET",
+			responseType: "json",
+		});
+		if (data) {
+			items.value.push(data);
 
-      // 一番下までスクロール
-      if (itemList.value) {
-        await nextTick();
-        itemList.value.$el.scrollTop = itemList.value.$el.scrollHeight;
-      }
-    }
-    value.value = initialValue.value;
-  } else {
-    value.value += e.key;
-  }
+			// 一番下までスクロール
+			if (itemList.value) {
+				await nextTick();
+				itemList.value.$el.scrollTop = itemList.value.$el.scrollHeight;
+			}
+		}
+		value.value = initialValue.value;
+	} else {
+		value.value += e.key;
+	}
 };
 
 // オリジナルプリペイド決済のURLを取得
 const fetchOriginalPrepaidPaymentUrl = async () => {
-  try {
-    const data = await $fetch<{ transactionId: string; url: string }>(
-      "/api/original-prepaid-payment/",
-      {
-        method: "POST",
-        responseType: "json",
-        body: {
-          totalAmount: total.value,
-          details: items.value.reduce((acc, item) => {
-            const existingItem = acc.findIndex(
-              (accItem) => accItem.productId === item.jan_code
-            );
-            if (existingItem !== -1) {
-              acc[existingItem].quantity += 1;
-              return acc;
-            }
-            acc.push({
-              productId: item.jan_code,
-              name: item.name,
-              price: item.price,
-              quantity: 1,
-            });
-            return acc;
-          }, [] as CreateTransactionApiRequest["details"]),
-          paymentMethod: "prepaid",
-        } as CreateTransactionApiRequest,
-      }
-    );
-    originalPrepaidPaymentTxnId.value = data.transactionId;
-    originalPrepaidPaymentUrl.value = data.url;
-  } catch (e) {
-    console.error(e);
-    originalPrepaidPaymentTxnId.value = null;
-    originalPrepaidPaymentUrl.value = null;
-    const errorMessage =
-      e instanceof Error ? e.message : "決済の初期化に失敗しました";
-    useToast().error({
-      message: errorMessage,
-    });
-  }
+	try {
+		const data = await $fetch<{ transactionId: string; url: string }>(
+			"/api/original-prepaid-payment/",
+			{
+				method: "POST",
+				responseType: "json",
+				body: {
+					totalAmount: total.value,
+					details: items.value.reduce(
+						(acc, item) => {
+							const existingItem = acc.findIndex(
+								(accItem) => accItem.productId === item.jan_code,
+							);
+							if (existingItem !== -1) {
+								acc[existingItem].quantity += 1;
+								return acc;
+							}
+							acc.push({
+								productId: item.jan_code,
+								name: item.name,
+								price: item.price,
+								quantity: 1,
+							});
+							return acc;
+						},
+						[] as CreateTransactionApiRequest["details"],
+					),
+					paymentMethod: "prepaid",
+				} as CreateTransactionApiRequest,
+			},
+		);
+		originalPrepaidPaymentTxnId.value = data.transactionId;
+		originalPrepaidPaymentUrl.value = data.url;
+	} catch (e) {
+		console.error(e);
+		originalPrepaidPaymentTxnId.value = null;
+		originalPrepaidPaymentUrl.value = null;
+		const errorMessage =
+			e instanceof Error ? e.message : "決済の初期化に失敗しました";
+		useToast().error({
+			message: errorMessage,
+		});
+	}
 };
 
 onMounted(() => {
-  window.addEventListener("keypress", handleKeypress);
-  setNoActionTimer();
+	window.addEventListener("keypress", handleKeypress);
+	setNoActionTimer();
 });
 
 onUnmounted(() => {
-  window.removeEventListener("keypress", handleKeypress);
-  if (noActionTimer.value) {
-    window.clearTimeout(noActionTimer.value);
-    noActionTimer.value = null;
-  }
+	window.removeEventListener("keypress", handleKeypress);
+	if (noActionTimer.value) {
+		window.clearTimeout(noActionTimer.value);
+		noActionTimer.value = null;
+	}
 });
 
 watch(items.value, () => {
-  isScreenSaverActive.value = false;
-  setNoActionTimer();
+	isScreenSaverActive.value = false;
+	setNoActionTimer();
 });
 
 const total = computed(() =>
-  items.value.reduce((acc, item) => acc + item.price, 0)
+	items.value.reduce((acc, item) => acc + item.price, 0),
 );
 </script>
