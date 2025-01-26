@@ -68,11 +68,12 @@
                       v-if="config.public.originalPrepaidPayment.url"
                       type="button"
                       class="inline-flex items-center gap-x-4 rounded-md bg-orange-500 px-7 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
+                      role="button"
+                      :aria-label="`${ config.public.originalPrepaidPayment.name }で支払う`"
                       @click="$emit('select', 'original-prepaid')"
                     >
                       <QrCode class="-ml-0.5 size-5" aria-hidden="true" />
                       {{ config.public.originalPrepaidPayment.name }}
-                      <span class="sr-only">で支払う</span>
                     </button>
                   </div>
                 </div>

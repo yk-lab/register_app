@@ -136,7 +136,7 @@ watch(open, (value) => {
         }
         emits("paid");
       }
-    }, 1000);
+    }, 3000);
   } else {
     clearPollingInterval();
   }
