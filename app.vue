@@ -73,6 +73,7 @@
             isChangeDisplayModalOpen = false;
             cashPayment = 0;
             items = [];
+            toast.success('ご利用ありがとうございました。');
           }
         "
       />
@@ -84,6 +85,7 @@
           () => {
             isOriginalPrepaidPaymentModalOpen = false;
             items = [];
+            toast.success('ご利用ありがとうございました。');
           }
         "
         v-model="isOriginalPrepaidPaymentModalOpen"
@@ -96,8 +98,11 @@
 import type { Item } from "./schemas/item";
 import { getFormattedPrice } from "./utils/numberFormat";
 import type { CreateTransactionApiRequest } from "./schemas/create-transaction-api";
+import "notyf/notyf.min.css";
 
 const SCREEN_SAVER_TIMEOUT = 30000;
+
+const toast = useToast();
 
 const initialData = ref<Item[]>([]);
 const items = ref<Item[]>(initialData.value);
@@ -226,7 +231,11 @@ const fetchOriginalPrepaidPaymentUrl = async () => {
     console.error(e);
     originalPrepaidPaymentTxnId.value = null;
     originalPrepaidPaymentUrl.value = null;
-    // TODO: エラーメッセージを表示
+    const errorMessage =
+      e instanceof Error ? e.message : "決済の初期化に失敗しました";
+    useToast().error({
+      message: errorMessage,
+    });
   }
 };
 
