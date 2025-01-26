@@ -38,7 +38,7 @@
       <PaymentMethodSelectionModal
         v-model="isPaymentMethodSelectionModalOpen"
         @select="
-          (method) => {
+          async (method) => {
             isPaymentMethodSelectionModalOpen = false;
             switch (method) {
               case 'cash':
@@ -46,13 +46,21 @@
                 break;
               case 'original-prepaid':
                 isLoading = true;
-                fetchOriginalPrepaidPaymentUrl()
-                  .then(() => {
-                    isOriginalPrepaidPaymentModalOpen = true;
-                  })
-                  .finally(() => {
-                    isLoading = false;
+                try {
+                  await fetchOriginalPrepaidPaymentUrl();
+                  isOriginalPrepaidPaymentModalOpen = true;
+                } catch (e) {
+                  console.error(e);
+                  const errorMessage =
+                    e instanceof Error
+                      ? e.message
+                      : '決済の初期化に失敗しました';
+                  toast.error({
+                    message: errorMessage,
                   });
+                } finally {
+                  isLoading = false;
+                }
                 break;
             }
           }
@@ -182,7 +190,6 @@ const handleKeypress = async (e: KeyboardEvent) => {
   }
   lastTime.value = now;
   if (e.key === "Enter") {
-    value.value = "4902431302288";
     const data = await $fetch<Item>(`/api/items/${value.value}/`, {
       method: "GET",
       responseType: "json",
