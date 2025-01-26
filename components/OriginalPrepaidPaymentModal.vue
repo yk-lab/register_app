@@ -1,6 +1,6 @@
 <template>
   <TransitionRoot as="template" :show="open">
-    <Dialog class="relative z-10" @close="open = false">
+    <Dialog class="relative z-10" @close="open = false" aria-label="前払い決済">
       <TransitionChild
         as="template"
         enter="ease-out duration-300"
@@ -29,7 +29,7 @@
             <DialogPanel
               class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-xl sm:p-6"
             >
-              <div class="absolute right-0 top-0 hidden pr-4 pt-4 sm:block">
+              <div class="absolute right-0 top-0 pr-4 pt-4">
                 <button
                   type="button"
                   class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
@@ -81,17 +81,33 @@ import "simple-keyboard/build/css/index.css";
 import type { Transaction } from "~/schemas/transaction";
 import { renderSVG } from "uqr";
 
+/**
+ * オリジナル前払い決済モーダル
+ * @component
+ */
 const { txnId, url } = defineProps<{
+  /** トランザクションID */
   txnId: string | null;
+  /** 決済用URL */
   url: string | null;
 }>();
 
+/** 支払い完了時に発火するイベント */
 const emits = defineEmits<{ paid: [] }>();
 
 const config = useRuntimeConfig();
 const open = defineModel({ required: true, type: Boolean });
 const interval = ref<number | null>(null);
 
+/** ポーリング間隔をクリアする */
+const clearPollingInterval = () => {
+  if (interval.value) {
+    clearInterval(interval.value);
+    interval.value = null;
+  }
+};
+
+/** QRコードを描画 */
 const qrCode = computed(() => {
   if (!url) {
     return "";
@@ -122,17 +138,11 @@ watch(open, (value) => {
       }
     }, 1000);
   } else {
-    if (interval.value) {
-      clearInterval(interval.value);
-      interval.value = null;
-    }
+    clearPollingInterval();
   }
 });
 
 onUnmounted(() => {
-  if (interval.value) {
-    clearInterval(interval.value);
-    interval.value = null;
-  }
+  clearPollingInterval();
 });
 </script>

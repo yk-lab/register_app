@@ -72,6 +72,7 @@
                     >
                       <QrCode class="-ml-0.5 size-5" aria-hidden="true" />
                       {{ config.public.originalPrepaidPayment.name }}
+                      <span class="sr-only">で支払う</span>
                     </button>
                   </div>
                 </div>
@@ -94,8 +95,11 @@ import {
 } from "@headlessui/vue";
 import { HandCoins, QrCode, WalletMinimal, X } from "lucide-vue-next";
 
+const PAYMENT_METHODS = ['cash', 'original-prepaid'] as const;
+type PaymentMethod = typeof PAYMENT_METHODS[number];
+
 defineEmits<{
-  select: [paymentMethod: "cash" | "original-prepaid"];
+  select: [paymentMethod: PaymentMethod];
 }>();
 
 const config = useRuntimeConfig();

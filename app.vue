@@ -226,6 +226,7 @@ const fetchOriginalPrepaidPaymentUrl = async () => {
     console.error(e);
     originalPrepaidPaymentTxnId.value = null;
     originalPrepaidPaymentUrl.value = null;
+    // TODO: エラーメッセージを表示
   }
 };
 
