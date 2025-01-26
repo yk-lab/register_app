@@ -33,6 +33,7 @@
       </footer>
     </div>
     <Teleport to="body">
+      <LoadingOverlay v-model="isLoading" />
       <ScreenSaver v-model="isScreenSaverActive" @click="setNoActionTimer" />
       <PaymentMethodSelectionModal
         v-model="isPaymentMethodSelectionModalOpen"
@@ -44,10 +45,14 @@
                 isCashPaymentModalOpen = true;
                 break;
               case 'original-prepaid':
-                // TODO: 読み込み待ちのスピナーを表示
-                fetchOriginalPrepaidPaymentUrl().then(() => {
-                  isOriginalPrepaidPaymentModalOpen = true;
-                });
+                isLoading = true;
+                fetchOriginalPrepaidPaymentUrl()
+                  .then(() => {
+                    isOriginalPrepaidPaymentModalOpen = true;
+                  })
+                  .finally(() => {
+                    isLoading = false;
+                  });
                 break;
             }
           }
@@ -104,6 +109,7 @@ const SCREEN_SAVER_TIMEOUT = 30000;
 
 const toast = useToast();
 
+const isLoading = ref(false);
 const initialData = ref<Item[]>([]);
 const items = ref<Item[]>(initialData.value);
 const initialValue = ref("");
