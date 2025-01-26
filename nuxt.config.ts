@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import webpackStatsPlugin from "rollup-plugin-webpack-stats";
+
 export default defineNuxtConfig({
   ssr: false,
   compatibilityDate: '2024-04-03',
@@ -42,5 +44,12 @@ export default defineNuxtConfig({
       tailwindcss: {},
       autoprefixer: {},
     },
+  },
+  vite: {
+    plugins: [
+      // Output webpack-stats.json file
+      // https://relative-ci.com/documentation/guides/bundle-stats/vite
+      webpackStatsPlugin(),
+    ],
   },
 })

@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  pull_request:
 
 jobs:
   build:
@@ -11,20 +12,24 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
           node-version-file: package.json
+
       - uses: pnpm/action-setup@v4
         name: Install pnpm
         id: pnpm-install
         with:
           run_install: false
+
       - name: Get pnpm store directory
         id: pnpm-cache
         shell: bash
         run: |
           echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
       - uses: actions/cache@v4
         name: Setup pnpm cache
         with:
@@ -32,11 +37,26 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Run Biome
+        run: pnpm biome ci .
+
+      - name: Check TypeScript
+        run: pnpm vue-tsc --noEmit
+
       - name: Build Nuxt.js application
         run: pnpm build
+
+      - name: Send webpack stats to RelativeCI
+        uses: relative-ci/agent-action@v2
+        with:
+          webpackStatsFile: ./.nuxt/dist/client/webpack-stats.json
+          key: ${{ secrets.RELATIVE_CI_KEY }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
 
       - name: Archive production artifacts
         run: |
@@ -48,3 +68,32 @@ jobs:
         with:
           name: nuxt-app
           path: nuxt-app.tar.gz
+
+  lint_yaml:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: yamllint
+        uses: reviewdog/action-yamllint@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          fail_level: error
+
+      - name: yamlfmt action
+        uses: yk-lab/yamlfmt-action@v1.0.0
+        with:
+          path: .
+          extensions: .yaml,.yml,.yamlfmt,.yamllint
+
+  spellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run codespell
+        uses: codespell-project/actions-codespell@master
+        with:
+          check_filenames: true
+          skip: ./.git,./.nuxt,./node_modules,./output,pnpm-lock.yaml
+

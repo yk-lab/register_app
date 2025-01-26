@@ -99,8 +99,7 @@ import {
   TransitionChild,
   TransitionRoot,
 } from "@headlessui/vue";
-import { X } from "lucide-vue-next";
-import { HandCoins } from "lucide-vue-next";
+import { HandCoins, X } from "lucide-vue-next";
 import Keyboard from "simple-keyboard";
 import "simple-keyboard/build/css/index.css";
 
