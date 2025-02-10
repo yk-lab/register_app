@@ -32,7 +32,7 @@
               <div class="absolute right-0 top-0 pr-4 pt-4">
                 <button
                   type="button"
-                  class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+                  class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-hidden focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
                   @click="open = false"
                 >
                   <span class="sr-only">Close</span>

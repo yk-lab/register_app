@@ -1,3 +1,5 @@
+// https://tailwindcss.com/docs/installation/framework-guides/nuxt
+import tailwindcss from "@tailwindcss/vite";
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import webpackStatsPlugin from "rollup-plugin-webpack-stats";
 
@@ -39,17 +41,13 @@ export default defineNuxtConfig({
 	//     telemetry: false,
 	//   },
 	// },
-	postcss: {
-		plugins: {
-			tailwindcss: {},
-			autoprefixer: {},
-		},
-	},
 	vite: {
 		plugins: [
 			// Output webpack-stats.json file
 			// https://relative-ci.com/documentation/guides/bundle-stats/vite
 			webpackStatsPlugin(),
+			// https://tailwindcss.com/docs/installation/framework-guides/nuxt
+			tailwindcss(),
 		],
 	},
 });
