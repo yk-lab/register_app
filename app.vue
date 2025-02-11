@@ -21,7 +21,7 @@
                 <button
                   v-if="total > 0"
                   type="button"
-                  class="px-12 py-2 bg-orange-500 text-white font-bold rounded hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  class="px-12 py-2 bg-orange-500 text-white font-bold rounded-sm hover:bg-orange-600 focus:outline-hidden focus:ring-2 focus:ring-orange-500"
                   @click="isPaymentMethodSelectionModalOpen = true"
                 >
                   会計
@@ -108,10 +108,10 @@
 </template>
 
 <script setup lang="ts">
+import "notyf/notyf.min.css";
 import type { CreateTransactionApiRequest } from "./schemas/create-transaction-api";
 import type { Item } from "./schemas/item";
 import { getFormattedPrice } from "./utils/numberFormat";
-import "notyf/notyf.min.css";
 
 const SCREEN_SAVER_TIMEOUT = 30000;
 

@@ -59,7 +59,7 @@
                   <div class="mt-2">
                     <button
                       type="button"
-                      class="px-12 py-2 bg-orange-500 text-white font-bold rounded hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                      class="px-12 py-2 bg-orange-500 text-white font-bold rounded-sm hover:bg-orange-600 focus:outline-hidden focus:ring-2 focus:ring-orange-500"
                       @click="$emit('paid', orderId)"
                     >
                       閉じる

@@ -32,7 +32,7 @@
               <div class="absolute right-0 top-0 hidden pr-4 pt-4 sm:block">
                 <button
                   type="button"
-                  class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+                  class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-hidden focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
                   @click="open = false"
                 >
                   <span class="sr-only">Close</span>
@@ -58,7 +58,7 @@
                   <div class="mt-2 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6" role="radiogroup">
                     <button
                       type="button"
-                      class="inline-flex items-center gap-x-4 rounded-md bg-orange-500 px-7 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
+                      class="inline-flex items-center gap-x-4 rounded-md bg-orange-500 px-7 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-orange-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
                       role="radio"
                       :aria-checked="false"
                       aria-label="現金で支払う"
@@ -70,7 +70,7 @@
                     <button
                       v-if="config.public.originalPrepaidPayment.url"
                       type="button"
-                      class="inline-flex items-center gap-x-4 rounded-md bg-orange-500 px-7 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
+                      class="inline-flex items-center gap-x-4 rounded-md bg-orange-500 px-7 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-orange-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
                       role="radio"
                       :aria-checked="false"
                       :aria-label="`${ config.public.originalPrepaidPayment.name }で支払う`"
