@@ -28,8 +28,8 @@ importers:
         specifier: 1.7.23
         version: 1.7.23(vue@3.5.13(typescript@5.7.3))
       '@sentry/nuxt':
-        specifier: 9.6.1
-        version: 9.6.1(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.15.4(@biomejs/biome@1.9.4)(@parcel/watcher@2.5.1)(@types/node@22.13.10)(db0@0.2.3)(ioredis@5.5.0)(lightningcss@1.29.1)(magicast@0.3.5)(rollup@4.34.6)(terser@5.38.1)(typescript@5.7.3)(vite@6.1.0(@types/node@22.13.10)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.38.1)(yaml@2.7.0))(vue-tsc@2.2.2(typescript@5.7.3))(yaml@2.7.0))(rollup@4.34.6)(vue@3.5.13(typescript@5.7.3))
+        specifier: 9.7.0
+        version: 9.7.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.15.4(@biomejs/biome@1.9.4)(@parcel/watcher@2.5.1)(@types/node@22.13.10)(db0@0.2.3)(ioredis@5.5.0)(lightningcss@1.29.1)(magicast@0.3.5)(rollup@4.34.6)(terser@5.38.1)(typescript@5.7.3)(vite@6.1.0(@types/node@22.13.10)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.38.1)(yaml@2.7.0))(vue-tsc@2.2.2(typescript@5.7.3))(yaml@2.7.0))(rollup@4.34.6)(vue@3.5.13(typescript@5.7.3))
       '@tailwindcss/vite':
         specifier: 4.0.7
         version: 4.0.7(vite@6.1.0(@types/node@22.13.10)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.38.1)(yaml@2.7.0))
@@ -555,8 +555,8 @@ packages:
     resolution: {integrity: sha512-dr7I7eZOoRLl4uxdxeL2dQsH0OrbEiVPIyBHnBpA4co24CBnoJoF+JINuP9l3PAM3IhUzc5JIVq3/YY3lEc3Hw==}
     engines: {node: '>=18.12.0'}
 
-  '@nuxt/kit@3.16.0':
-    resolution: {integrity: sha512-yPfhk58BG6wJhELkGOTCOlkMDbZkizk3IaINcyTKm+hBKiK3SheLt7S9HStNL+qZSfH2Cf7A8sYp6M72lOIEtA==}
+  '@nuxt/kit@3.16.1':
+    resolution: {integrity: sha512-Perby8hJGUeCWad5oTVXb/Ibvp18ZCUC5PxHHu+acMDmVfnxSo48yqk7qNd09VkTF3LEzoEjNZpmW2ZWN0ry7A==}
     engines: {node: '>=18.12.0'}
 
   '@nuxt/schema@3.15.4':
@@ -1045,20 +1045,20 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@sentry-internal/browser-utils@9.6.1':
-    resolution: {integrity: sha512-3bQDHc/extRnjzPaq8SjNxwPLHeWa5jT8O99kYq2MHg+xZr5wb5PkbaBIPZNHZp4CChNkzzSEQI9p1aBIfy0rQ==}
+  '@sentry-internal/browser-utils@9.7.0':
+    resolution: {integrity: sha512-1wVd8mCvbeGs3wSDZFYQ9RE8I8Ii8iQ2wnHKbONk645RIT6FwSCPHlnFKWYSFVxo85Wm6SFbKcv1zvTNXUVhfQ==}
     engines: {node: '>=18'}
 
-  '@sentry-internal/feedback@9.6.1':
-    resolution: {integrity: sha512-mjvEYzBFnV3RmpGsqGeKCIvyYBoHoapevEYgNS2Q+kcFXfSYvA1EozzlhlTVaflWzI2kfLN0Uh/OBcjwCRvCkQ==}
+  '@sentry-internal/feedback@9.7.0':
+    resolution: {integrity: sha512-Ld51wOfXYO90++ZGBuVF/5PAMBnVWFfvvleXRgA9VaL2hq296+tLXYVccHTgH+dZmwjJgsybDAxHdj+k1FFnmw==}
     engines: {node: '>=18'}
 
-  '@sentry-internal/replay-canvas@9.6.1':
-    resolution: {integrity: sha512-3enNu2YwG4SycodMyenR6Q6MfFwbvatD6ms1gupxB0HGui2xxfgb2ySYZI2iuvMPO2VL544kFkIfwNyqax2YyA==}
+  '@sentry-internal/replay-canvas@9.7.0':
+    resolution: {integrity: sha512-E/XESnVLV+CUyrucrxK2kHpEKTDrz7LTBwjnt3FDHA8MfwMRX+np0sYjvcIRWAG4xxBOYBGlWD2+n0Y2pqYa2Q==}
     engines: {node: '>=18'}
 
-  '@sentry-internal/replay@9.6.1':
-    resolution: {integrity: sha512-iV5E48fI+IQzyI2hJ+KKOullWMbv/SWDFtyQoRN6drimScDP9Tn1rJ5uNsAiVF3m8Vsj+w3UQwPBzcd+WDeQmw==}
+  '@sentry-internal/replay@9.7.0':
+    resolution: {integrity: sha512-JOwwqe3JtcbkvC/hM7qr1x40lk3K5zm8r2HHVKVLzrf6cAuLF9x17R7h+0cDOHcilacbtIQQ9Fjjb63a1/iDLQ==}
     engines: {node: '>=18'}
 
   '@sentry/babel-plugin-component-annotate@2.22.6':
@@ -1069,8 +1069,8 @@ packages:
     resolution: {integrity: sha512-5h2WXRJ6swKA0TwxHHryC8M2QyOfS9QhTAL6ElPfkEYe9HhJieXmxsDpyspbqAa26ccnCUcmwE5vL34jAjt4sQ==}
     engines: {node: '>= 14'}
 
-  '@sentry/browser@9.6.1':
-    resolution: {integrity: sha512-m6rCoR+dafZkHTJdQhPrIq4vdTrfRhmP3FVEPlBCVClnNeo6TShVJwtEu3kfBsmnYfGWaac2tn1oczMD2wjmZQ==}
+  '@sentry/browser@9.7.0':
+    resolution: {integrity: sha512-G2AZuWAfatv30rFWYcbAZNnty9826ld8k+EucYLtDGN0uBdHXX9XT/x7/C8dprtV16jGWzrfvMza8C7Z4uj8BA==}
     engines: {node: '>=18'}
 
   '@sentry/bundler-plugin-core@2.22.6':
@@ -1086,8 +1086,8 @@ packages:
     engines: {node: '>=10'}
     os: [darwin]
 
-  '@sentry/cli-darwin@2.42.3':
-    resolution: {integrity: sha512-QGNXZ5c2kbjB3O37ep/uVfqTspHaHkH4kmoMPNJ6j21A1oYyJq5t/AX9JWsueysRwvn6Jc0K0+XyzYZ13z0vsQ==}
+  '@sentry/cli-darwin@2.42.4':
+    resolution: {integrity: sha512-PZV4Y97VDWBR4rIt0HkJfXaBXlebIN2s/FDzC3iHINZE5OG62CDFsnC4/lbGlf2/UZLDaGGIK7mYwSHhTvN+HQ==}
     engines: {node: '>=10'}
     os: [darwin]
 
@@ -1097,8 +1097,8 @@ packages:
     cpu: [arm64]
     os: [linux, freebsd]
 
-  '@sentry/cli-linux-arm64@2.42.3':
-    resolution: {integrity: sha512-tRqWrmphK82G14KKFEouLdV8BdCpGsTuySZ8nzTqhoAtcjpWFaavX2/1UqKzPVYjkxwXc1npO3Q7qfZYW2HvjQ==}
+  '@sentry/cli-linux-arm64@2.42.4':
+    resolution: {integrity: sha512-Ex8vRnryyzC/9e43daEmEqPS+9uirY/l6Hw2lAvhBblFaL7PTWNx52H+8GnYGd9Zy2H3rWNyBDYfHwnErg38zA==}
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [linux, freebsd]
@@ -1109,8 +1109,8 @@ packages:
     cpu: [arm]
     os: [linux, freebsd]
 
-  '@sentry/cli-linux-arm@2.42.3':
-    resolution: {integrity: sha512-tipumegAsKy9KLq6Bk87E8FqkKErReaNzdhoHCb081jkxQxpzKN/MQPMl9mA0XeKc4A7OUBM3vjhIk6uNi1R2g==}
+  '@sentry/cli-linux-arm@2.42.4':
+    resolution: {integrity: sha512-lBn0oeeg62h68/4Eo6zbPq99Idz5t0VRV48rEU/WKeM4MtQCvG/iGGQ3lBFW2yNiUBzXZIK9poXLEcgbwmcRVw==}
     engines: {node: '>=10'}
     cpu: [arm]
     os: [linux, freebsd]
@@ -1121,8 +1121,8 @@ packages:
     cpu: [x86, ia32]
     os: [linux, freebsd]
 
-  '@sentry/cli-linux-i686@2.42.3':
-    resolution: {integrity: sha512-pc4Kc7xTMNbUPiRLQ2UXcj2V2vbVmST0IyhOlVTmY0L3ZxMdiwTq7qgS/IcxI/CaCPyEZWplXnxlsa//mCMuYw==}
+  '@sentry/cli-linux-i686@2.42.4':
+    resolution: {integrity: sha512-IBJg0aHjsLCL4LvcFa3cXIjA+4t5kPqBT9y+PoDu4goIFxYD8zl7mbUdGJutvJafTk8Akf4ss4JJXQBjg019zA==}
     engines: {node: '>=10'}
     cpu: [x86, ia32]
     os: [linux, freebsd]
@@ -1133,8 +1133,8 @@ packages:
     cpu: [x64]
     os: [linux, freebsd]
 
-  '@sentry/cli-linux-x64@2.42.3':
-    resolution: {integrity: sha512-CZoG2swc38/RruLYtvMJNpcbvzqpcSDl+dUFJ3y6wIvMsE1IQL3zrb4xSh1Acf8Hi+GhlFAtoZpgH1tpWWZ/Zw==}
+  '@sentry/cli-linux-x64@2.42.4':
+    resolution: {integrity: sha512-gXI5OEiOSNiAEz7VCE6AZcAgHJ47mlgal3+NmbE8XcHmFOnyDws9FNie6PJAy8KZjXi3nqoBP9JVAbnmOix3uA==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [linux, freebsd]
@@ -1145,8 +1145,8 @@ packages:
     cpu: [x86, ia32]
     os: [win32]
 
-  '@sentry/cli-win32-i686@2.42.3':
-    resolution: {integrity: sha512-geiPcfeuSj23N346xwrxFAuohIivK48NKQQYllVFAADYoYrSawSznVzRyOIheiOte1AIrDkpqzoT/5igl7ANEQ==}
+  '@sentry/cli-win32-i686@2.42.4':
+    resolution: {integrity: sha512-vZuR3UPHKqOMniyrijrrsNwn9usaRysXq78F6WV0cL0ZyPLAmY+KBnTDSFk1Oig2pURnzaTm+RtcZu2fc8mlzg==}
     engines: {node: '>=10'}
     cpu: [x86, ia32]
     os: [win32]
@@ -1157,8 +1157,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@sentry/cli-win32-x64@2.42.3':
-    resolution: {integrity: sha512-sG+phJ+3WUMx6gTrUd7UH+q0L6X1YjS57ovMMf3XYyE/WIF8c+uc+vZC/RB3O5l3vTTCXoePqHf8+9ulgp9dkA==}
+  '@sentry/cli-win32-x64@2.42.4':
+    resolution: {integrity: sha512-OIBj3uaQ6nAERSm5Dcf8UIhyElEEwMNsZEEppQpN4IKl0mrwb/57AznM23Dvpu6GR8WGbVQUSolt879YZR5E9g==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [win32]
@@ -1168,27 +1168,27 @@ packages:
     engines: {node: '>= 10'}
     hasBin: true
 
-  '@sentry/cli@2.42.3':
-    resolution: {integrity: sha512-SqY+QZGAISb0NWh6Y4HX/RUhUq9VQjN18ZhY3tTtObgxoaRkbngs21gEyemSKf5hv3HsVGuUf9jvxGQEalwrsw==}
+  '@sentry/cli@2.42.4':
+    resolution: {integrity: sha512-BoSZDAWJiz/40tu6LuMDkSgwk4xTsq6zwqYoUqLU3vKBR/VsaaQGvu6EWxZXORthfZU2/5Agz0+t220cge6VQw==}
     engines: {node: '>= 10'}
     hasBin: true
 
-  '@sentry/core@9.6.1':
-    resolution: {integrity: sha512-BHaRxyFF3sNlKP6lNcB5cxFogvfMOtWw0Est6mK/Mbewnim0qEbmqKyuMj67ebfgo+pmUJJc2wgugdxkxvqGRQ==}
+  '@sentry/core@9.7.0':
+    resolution: {integrity: sha512-EprjtU7F6eltB4Nx8fzWFXsfAC/6yNGuKo2bHKeIAmNufjD0X4ifz+iB3d0pKuwsn9jQbLrQTIGwKdTO3dstFw==}
     engines: {node: '>=18'}
 
-  '@sentry/node@9.6.1':
-    resolution: {integrity: sha512-cS05ROvBvAFbooqIdyw+yvPyVJqJ89bcirf/QwtFJm+4REtbI7+UAn3D9l17Zd41G1FtpQynpebkCyMc22jO/Q==}
+  '@sentry/node@9.7.0':
+    resolution: {integrity: sha512-akV3tUaByurPT2OY2W6AmHKxNrFZjf5WlN6eL/HhU+AV1Nox/cbZWIt6nr2PuaVd+e4xVyaXUkNtjo0UZUvQEQ==}
     engines: {node: '>=18'}
 
-  '@sentry/nuxt@9.6.1':
-    resolution: {integrity: sha512-9WtWOkPmK+ahORHj0+UiZee6azM+H3fZ/AEiuPUA9uowknghhFh4KtgeQyDxI2EWBTnLDuyttMlkZ/hze4uD8w==}
+  '@sentry/nuxt@9.7.0':
+    resolution: {integrity: sha512-W5dWpRNyE5CEsN5XeT7ufA4qMrcDUVHY5vnvAJXItxg8jLJzHHHzybhrdoRc2Crl/jlO0j5dnRgtuu+j7okDRg==}
     engines: {node: '>=18.19.1'}
     peerDependencies:
       nuxt: '>=3.7.0 || 4.x'
 
-  '@sentry/opentelemetry@9.6.1':
-    resolution: {integrity: sha512-KjWOcYEoRiwlHxfWTnEQKErpa4c1BubsJFCezqV64BOTV2vX09AjdJo33PrPjstGopDloLdkqJS60KBhVl49JQ==}
+  '@sentry/opentelemetry@9.7.0':
+    resolution: {integrity: sha512-WsHiGLhm6RIdOwzKAujn7+iR/PCUV//X8AC1ZjuLnqv68z698piyOOxpHLBdaha57E1qxWe1uZ/tjM9/lE2gLA==}
     engines: {node: '>=18'}
     peerDependencies:
       '@opentelemetry/api': ^1.9.0
@@ -1208,8 +1208,8 @@ packages:
     resolution: {integrity: sha512-zIieP1VLWQb3wUjFJlwOAoaaJygJhXeUoGd0e/Ha2RLb2eW2S+4gjf6y6NqyY71tZ74LYVZKg/4prB6FAZSMXQ==}
     engines: {node: '>= 14'}
 
-  '@sentry/vue@9.6.1':
-    resolution: {integrity: sha512-72Q7V7avtUXor0VzImYTNjsdFuwNweFLkKuhfDnxTD44KeEfp6E1eRZLtn0HptKaa4OQCv+8RiTrTS1Xud5yNA==}
+  '@sentry/vue@9.7.0':
+    resolution: {integrity: sha512-pN6HPQlo84TJIF2KCHi8o9KqXOL64swMwt7yL77PsdQX7C4yydjzfwjWSvTd7RF3QaO3LBGALE/yOPgHuvTv1w==}
     engines: {node: '>=18'}
     peerDependencies:
       pinia: 2.x || 3.x
@@ -4432,7 +4432,7 @@ snapshots:
 
   '@nuxt/devtools-kit@1.7.0(magicast@0.3.5)(vite@6.1.0(@types/node@22.13.10)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.38.1)(yaml@2.7.0))':
     dependencies:
-      '@nuxt/kit': 3.16.0(magicast@0.3.5)
+      '@nuxt/kit': 3.16.1(magicast@0.3.5)
       '@nuxt/schema': 3.15.4
       execa: 7.2.0
       vite: 6.1.0(@types/node@22.13.10)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.38.1)(yaml@2.7.0)
@@ -4457,7 +4457,7 @@ snapshots:
       '@antfu/utils': 0.7.10
       '@nuxt/devtools-kit': 1.7.0(magicast@0.3.5)(vite@6.1.0(@types/node@22.13.10)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.38.1)(yaml@2.7.0))
       '@nuxt/devtools-wizard': 1.7.0
-      '@nuxt/kit': 3.16.0(magicast@0.3.5)
+      '@nuxt/kit': 3.16.1(magicast@0.3.5)
       '@vue/devtools-core': 7.6.8(vite@6.1.0(@types/node@22.13.10)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.38.1)(yaml@2.7.0))(vue@3.5.13(typescript@5.7.3))
       '@vue/devtools-kit': 7.6.8
       birpc: 0.2.19
@@ -4488,7 +4488,7 @@ snapshots:
       tinyglobby: 0.2.10
       unimport: 3.14.6(rollup@4.34.6)
       vite: 6.1.0(@types/node@22.13.10)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.38.1)(yaml@2.7.0)
-      vite-plugin-inspect: 0.8.9(@nuxt/kit@3.16.0(magicast@0.3.5))(rollup@4.34.6)(vite@6.1.0(@types/node@22.13.10)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.38.1)(yaml@2.7.0))
+      vite-plugin-inspect: 0.8.9(@nuxt/kit@3.16.1(magicast@0.3.5))(rollup@4.34.6)(vite@6.1.0(@types/node@22.13.10)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.38.1)(yaml@2.7.0))
       vite-plugin-vue-inspector: 5.3.1(vite@6.1.0(@types/node@22.13.10)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.38.1)(yaml@2.7.0))
       which: 3.0.1
       ws: 8.18.0
@@ -4525,7 +4525,7 @@ snapshots:
       - magicast
       - supports-color
 
-  '@nuxt/kit@3.16.0(magicast@0.3.5)':
+  '@nuxt/kit@3.16.1(magicast@0.3.5)':
     dependencies:
       c12: 3.0.2(magicast@0.3.5)
       consola: 3.4.2
@@ -4561,7 +4561,7 @@ snapshots:
 
   '@nuxt/telemetry@2.6.4(magicast@0.3.5)':
     dependencies:
-      '@nuxt/kit': 3.16.0(magicast@0.3.5)
+      '@nuxt/kit': 3.16.1(magicast@0.3.5)
       citty: 0.1.6
       consola: 3.4.0
       destr: 2.0.3
@@ -5107,41 +5107,41 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.34.6':
     optional: true
 
-  '@sentry-internal/browser-utils@9.6.1':
+  '@sentry-internal/browser-utils@9.7.0':
     dependencies:
-      '@sentry/core': 9.6.1
+      '@sentry/core': 9.7.0
 
-  '@sentry-internal/feedback@9.6.1':
+  '@sentry-internal/feedback@9.7.0':
     dependencies:
-      '@sentry/core': 9.6.1
+      '@sentry/core': 9.7.0
 
-  '@sentry-internal/replay-canvas@9.6.1':
+  '@sentry-internal/replay-canvas@9.7.0':
     dependencies:
-      '@sentry-internal/replay': 9.6.1
-      '@sentry/core': 9.6.1
+      '@sentry-internal/replay': 9.7.0
+      '@sentry/core': 9.7.0
 
-  '@sentry-internal/replay@9.6.1':
+  '@sentry-internal/replay@9.7.0':
     dependencies:
-      '@sentry-internal/browser-utils': 9.6.1
-      '@sentry/core': 9.6.1
+      '@sentry-internal/browser-utils': 9.7.0
+      '@sentry/core': 9.7.0
 
   '@sentry/babel-plugin-component-annotate@2.22.6': {}
 
   '@sentry/babel-plugin-component-annotate@3.1.2': {}
 
-  '@sentry/browser@9.6.1':
+  '@sentry/browser@9.7.0':
     dependencies:
-      '@sentry-internal/browser-utils': 9.6.1
-      '@sentry-internal/feedback': 9.6.1
-      '@sentry-internal/replay': 9.6.1
-      '@sentry-internal/replay-canvas': 9.6.1
-      '@sentry/core': 9.6.1
+      '@sentry-internal/browser-utils': 9.7.0
+      '@sentry-internal/feedback': 9.7.0
+      '@sentry-internal/replay': 9.7.0
+      '@sentry-internal/replay-canvas': 9.7.0
+      '@sentry/core': 9.7.0
 
   '@sentry/bundler-plugin-core@2.22.6':
     dependencies:
       '@babel/core': 7.26.10
       '@sentry/babel-plugin-component-annotate': 2.22.6
-      '@sentry/cli': 2.42.3
+      '@sentry/cli': 2.42.4
       dotenv: 16.4.7
       find-up: 5.0.0
       glob: 9.3.5
@@ -5168,43 +5168,43 @@ snapshots:
   '@sentry/cli-darwin@2.41.1':
     optional: true
 
-  '@sentry/cli-darwin@2.42.3':
+  '@sentry/cli-darwin@2.42.4':
     optional: true
 
   '@sentry/cli-linux-arm64@2.41.1':
     optional: true
 
-  '@sentry/cli-linux-arm64@2.42.3':
+  '@sentry/cli-linux-arm64@2.42.4':
     optional: true
 
   '@sentry/cli-linux-arm@2.41.1':
     optional: true
 
-  '@sentry/cli-linux-arm@2.42.3':
+  '@sentry/cli-linux-arm@2.42.4':
     optional: true
 
   '@sentry/cli-linux-i686@2.41.1':
     optional: true
 
-  '@sentry/cli-linux-i686@2.42.3':
+  '@sentry/cli-linux-i686@2.42.4':
     optional: true
 
   '@sentry/cli-linux-x64@2.41.1':
     optional: true
 
-  '@sentry/cli-linux-x64@2.42.3':
+  '@sentry/cli-linux-x64@2.42.4':
     optional: true
 
   '@sentry/cli-win32-i686@2.41.1':
     optional: true
 
-  '@sentry/cli-win32-i686@2.42.3':
+  '@sentry/cli-win32-i686@2.42.4':
     optional: true
 
   '@sentry/cli-win32-x64@2.41.1':
     optional: true
 
-  '@sentry/cli-win32-x64@2.42.3':
+  '@sentry/cli-win32-x64@2.42.4':
     optional: true
 
   '@sentry/cli@2.41.1':
@@ -5226,7 +5226,7 @@ snapshots:
       - encoding
       - supports-color
 
-  '@sentry/cli@2.42.3':
+  '@sentry/cli@2.42.4':
     dependencies:
       https-proxy-agent: 5.0.1
       node-fetch: 2.7.0
@@ -5234,20 +5234,20 @@ snapshots:
       proxy-from-env: 1.1.0
       which: 2.0.2
     optionalDependencies:
-      '@sentry/cli-darwin': 2.42.3
-      '@sentry/cli-linux-arm': 2.42.3
-      '@sentry/cli-linux-arm64': 2.42.3
-      '@sentry/cli-linux-i686': 2.42.3
-      '@sentry/cli-linux-x64': 2.42.3
-      '@sentry/cli-win32-i686': 2.42.3
-      '@sentry/cli-win32-x64': 2.42.3
+      '@sentry/cli-darwin': 2.42.4
+      '@sentry/cli-linux-arm': 2.42.4
+      '@sentry/cli-linux-arm64': 2.42.4
+      '@sentry/cli-linux-i686': 2.42.4
+      '@sentry/cli-linux-x64': 2.42.4
+      '@sentry/cli-win32-i686': 2.42.4
+      '@sentry/cli-win32-x64': 2.42.4
     transitivePeerDependencies:
       - encoding
       - supports-color
 
-  '@sentry/core@9.6.1': {}
+  '@sentry/core@9.7.0': {}
 
-  '@sentry/node@9.6.1':
+  '@sentry/node@9.7.0':
     dependencies:
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/context-async-hooks': 1.30.1(@opentelemetry/api@1.9.0)
@@ -5280,22 +5280,22 @@ snapshots:
       '@opentelemetry/sdk-trace-base': 1.30.1(@opentelemetry/api@1.9.0)
       '@opentelemetry/semantic-conventions': 1.30.0
       '@prisma/instrumentation': 6.5.0(@opentelemetry/api@1.9.0)
-      '@sentry/core': 9.6.1
-      '@sentry/opentelemetry': 9.6.1(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)
+      '@sentry/core': 9.7.0
+      '@sentry/opentelemetry': 9.7.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)
       import-in-the-middle: 1.13.1
     transitivePeerDependencies:
       - supports-color
 
-  '@sentry/nuxt@9.6.1(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.15.4(@biomejs/biome@1.9.4)(@parcel/watcher@2.5.1)(@types/node@22.13.10)(db0@0.2.3)(ioredis@5.5.0)(lightningcss@1.29.1)(magicast@0.3.5)(rollup@4.34.6)(terser@5.38.1)(typescript@5.7.3)(vite@6.1.0(@types/node@22.13.10)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.38.1)(yaml@2.7.0))(vue-tsc@2.2.2(typescript@5.7.3))(yaml@2.7.0))(rollup@4.34.6)(vue@3.5.13(typescript@5.7.3))':
+  '@sentry/nuxt@9.7.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.15.4(@biomejs/biome@1.9.4)(@parcel/watcher@2.5.1)(@types/node@22.13.10)(db0@0.2.3)(ioredis@5.5.0)(lightningcss@1.29.1)(magicast@0.3.5)(rollup@4.34.6)(terser@5.38.1)(typescript@5.7.3)(vite@6.1.0(@types/node@22.13.10)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.38.1)(yaml@2.7.0))(vue-tsc@2.2.2(typescript@5.7.3))(yaml@2.7.0))(rollup@4.34.6)(vue@3.5.13(typescript@5.7.3))':
     dependencies:
-      '@nuxt/kit': 3.16.0(magicast@0.3.5)
-      '@sentry/browser': 9.6.1
-      '@sentry/core': 9.6.1
-      '@sentry/node': 9.6.1
-      '@sentry/opentelemetry': 9.6.1(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)
+      '@nuxt/kit': 3.16.1(magicast@0.3.5)
+      '@sentry/browser': 9.7.0
+      '@sentry/core': 9.7.0
+      '@sentry/node': 9.7.0
+      '@sentry/opentelemetry': 9.7.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)
       '@sentry/rollup-plugin': 3.1.2(rollup@4.34.6)
       '@sentry/vite-plugin': 2.22.6
-      '@sentry/vue': 9.6.1(vue@3.5.13(typescript@5.7.3))
+      '@sentry/vue': 9.7.0(vue@3.5.13(typescript@5.7.3))
       nuxt: 3.15.4(@biomejs/biome@1.9.4)(@parcel/watcher@2.5.1)(@types/node@22.13.10)(db0@0.2.3)(ioredis@5.5.0)(lightningcss@1.29.1)(magicast@0.3.5)(rollup@4.34.6)(terser@5.38.1)(typescript@5.7.3)(vite@6.1.0(@types/node@22.13.10)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.38.1)(yaml@2.7.0))(vue-tsc@2.2.2(typescript@5.7.3))(yaml@2.7.0)
     transitivePeerDependencies:
       - '@opentelemetry/api'
@@ -5311,7 +5311,7 @@ snapshots:
       - supports-color
       - vue
 
-  '@sentry/opentelemetry@9.6.1(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)':
+  '@sentry/opentelemetry@9.7.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)':
     dependencies:
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/context-async-hooks': 1.30.1(@opentelemetry/api@1.9.0)
@@ -5319,7 +5319,7 @@ snapshots:
       '@opentelemetry/instrumentation': 0.57.2(@opentelemetry/api@1.9.0)
       '@opentelemetry/sdk-trace-base': 1.30.1(@opentelemetry/api@1.9.0)
       '@opentelemetry/semantic-conventions': 1.30.0
-      '@sentry/core': 9.6.1
+      '@sentry/core': 9.7.0
 
   '@sentry/rollup-plugin@3.1.2(rollup@4.34.6)':
     dependencies:
@@ -5338,10 +5338,10 @@ snapshots:
       - encoding
       - supports-color
 
-  '@sentry/vue@9.6.1(vue@3.5.13(typescript@5.7.3))':
+  '@sentry/vue@9.7.0(vue@3.5.13(typescript@5.7.3))':
     dependencies:
-      '@sentry/browser': 9.6.1
-      '@sentry/core': 9.6.1
+      '@sentry/browser': 9.7.0
+      '@sentry/core': 9.7.0
       vue: 3.5.13(typescript@5.7.3)
 
   '@sindresorhus/merge-streams@2.3.0': {}
@@ -8125,7 +8125,7 @@ snapshots:
       typescript: 5.7.3
       vue-tsc: 2.2.2(typescript@5.7.3)
 
-  vite-plugin-inspect@0.8.9(@nuxt/kit@3.16.0(magicast@0.3.5))(rollup@4.34.6)(vite@6.1.0(@types/node@22.13.10)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.38.1)(yaml@2.7.0)):
+  vite-plugin-inspect@0.8.9(@nuxt/kit@3.16.1(magicast@0.3.5))(rollup@4.34.6)(vite@6.1.0(@types/node@22.13.10)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.38.1)(yaml@2.7.0)):
     dependencies:
       '@antfu/utils': 0.7.10
       '@rollup/pluginutils': 5.1.4(rollup@4.34.6)
@@ -8138,7 +8138,7 @@ snapshots:
       sirv: 3.0.0
       vite: 6.1.0(@types/node@22.13.10)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.38.1)(yaml@2.7.0)
     optionalDependencies:
-      '@nuxt/kit': 3.16.0(magicast@0.3.5)
+      '@nuxt/kit': 3.16.1(magicast@0.3.5)
     transitivePeerDependencies:
       - rollup
       - supports-color
