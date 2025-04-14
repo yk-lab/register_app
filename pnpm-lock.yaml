@@ -43,8 +43,8 @@ importers:
         specifier: 4.7.8
         version: 4.7.8
       lucide-vue-next:
-        specifier: 0.483.0
-        version: 0.483.0(vue@3.5.13(typescript@5.7.3))
+        specifier: 0.488.0
+        version: 0.488.0(vue@3.5.13(typescript@5.7.3))
       notyf:
         specifier: 3.10.0
         version: 3.10.0
@@ -2544,8 +2544,8 @@ packages:
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
 
-  lucide-vue-next@0.483.0:
-    resolution: {integrity: sha512-oMX1hfH7hOAdwaJdddYTSN0Z+WomndF3KXryCP/I6iu+4jZL6a4YyYi1J23EzP3/wOWCaj9mDuVhxgK+xqX8vQ==}
+  lucide-vue-next@0.488.0:
+    resolution: {integrity: sha512-Za02FzR1r+XN2oxOQerH7HvZwLJz27qPfzbauYzphtewy1g59Bm2DraVS5Sb9iHcIe3Pqf8cTVufvpwqAKlsew==}
     peerDependencies:
       vue: '>=3.0.1'
 
@@ -6743,7 +6743,7 @@ snapshots:
     dependencies:
       yallist: 3.1.1
 
-  lucide-vue-next@0.483.0(vue@3.5.13(typescript@5.7.3)):
+  lucide-vue-next@0.488.0(vue@3.5.13(typescript@5.7.3)):
     dependencies:
       vue: 3.5.13(typescript@5.7.3)
 
