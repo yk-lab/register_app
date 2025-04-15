@@ -24,7 +24,7 @@
 		"@formkit/auto-animate": "0.8.2",
 		"@headlessui/vue": "1.7.23",
 		"@sentry/nuxt": "9.8.0",
-		"@tailwindcss/vite": "4.0.7",
+		"@tailwindcss/vite": "4.1.4",
 		"autoprefixer": "10.4.20",
 		"es-toolkit": "1.32.0",
 		"handlebars": "4.7.8",
