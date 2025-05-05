@@ -37,8 +37,8 @@ importers:
         specifier: 10.4.20
         version: 10.4.20(postcss@8.5.1)
       es-toolkit:
-        specifier: 1.32.0
-        version: 1.32.0
+        specifier: 1.37.2
+        version: 1.37.2
       handlebars:
         specifier: 4.7.8
         version: 4.7.8
@@ -1998,8 +1998,8 @@ packages:
   es-module-lexer@1.6.0:
     resolution: {integrity: sha512-qqnD1yMU6tk/jnaMosogGySTZP8YtUgAffA9nMN+E/rjxcfRQ6IEk7IiozUjgxKoFHBGjTLnrHB/YC45r/59EQ==}
 
-  es-toolkit@1.32.0:
-    resolution: {integrity: sha512-ZfSfHP1l6ubgW/B/FRtqb9bYdMvI6jizbOSfbwwJNcOQ1QE6TFsC3jpQkZ900uUPSR3t3SU5Ds7UWKnYz+uP8Q==}
+  es-toolkit@1.37.2:
+    resolution: {integrity: sha512-ADDfk+pPFF0ofMpRAIc6on01p8heiuwuuJsYLzTP4UOjxVK9QsE2+0D1Q4J/zX2XBo6ac+27H5++YBIwmGAX/g==}
 
   esbuild@0.24.2:
     resolution: {integrity: sha512-+9egpBW8I3CD5XPe0n6BfT5fxLzxrlDzqydF3aviG+9ni1lDC/OvMHcxqEFV0+LANZG5R1bFMWfUrjVsdwxJvA==}
@@ -6174,7 +6174,7 @@ snapshots:
 
   es-module-lexer@1.6.0: {}
 
-  es-toolkit@1.32.0: {}
+  es-toolkit@1.37.2: {}
 
   esbuild@0.24.2:
     optionalDependencies:
