@@ -51,7 +51,7 @@ jobs:
         run: pnpm build
 
       - name: Send webpack stats to RelativeCI
-        uses: relative-ci/agent-action@v2
+        uses: relative-ci/agent-action@v3
         with:
           webpackStatsFile: ./.nuxt/dist/client/webpack-stats.json
           key: ${{ secrets.RELATIVE_CI_KEY }}
