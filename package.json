@@ -30,7 +30,7 @@
 		"handlebars": "4.7.8",
 		"lucide-vue-next": "0.506.0",
 		"notyf": "3.10.0",
-		"rollup-plugin-webpack-stats": "2.0.4",
+		"rollup-plugin-webpack-stats": "2.0.6",
 		"simple-keyboard": "3.8.53",
 		"tailwindcss": "4.0.8",
 		"uqr": "0.1.2",
