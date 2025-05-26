@@ -23,7 +23,7 @@
 		"@biomejs/biome": "1.9.4",
 		"@formkit/auto-animate": "0.8.2",
 		"@headlessui/vue": "1.7.23",
-		"@sentry/nuxt": "9.8.0",
+		"@sentry/nuxt": "9.22.0",
 		"@tailwindcss/vite": "4.0.7",
 		"autoprefixer": "10.4.20",
 		"es-toolkit": "1.38.0",
