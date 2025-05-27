@@ -52,8 +52,8 @@ importers:
         specifier: 2.0.6
         version: 2.0.6(rollup@4.34.6)
       simple-keyboard:
-        specifier: 3.8.53
-        version: 3.8.53
+        specifier: 3.8.55
+        version: 3.8.55
       tailwindcss:
         specifier: 4.0.8
         version: 4.0.8
@@ -3353,8 +3353,8 @@ packages:
   simple-git@3.27.0:
     resolution: {integrity: sha512-ivHoFS9Yi9GY49ogc6/YAi3Fl9ROnF4VyubNylgCkA+RVqLaKWnDSzXOVzya8csELIaWaYNutsEuAhZrtOjozA==}
 
-  simple-keyboard@3.8.53:
-    resolution: {integrity: sha512-0uQm6G/XMF7/Bsj1zWA41fmOlKetw5Vxo60iA4C2pSeCZJSGhVVelaQy1prOyfjpM8/RpA/LHh4v+pEUUGdvUw==}
+  simple-keyboard@3.8.55:
+    resolution: {integrity: sha512-dIoAA/0p+gn5MEeuw/JHZMp06Oy4Shh0XjW9nK5eScorLEKUPIVAeyRFLrYf6BTeopudGpiJ+7AVp6EkNt0bmw==}
 
   sirv@3.0.0:
     resolution: {integrity: sha512-BPwJGUeDaDCHihkORDchNyyTvWFhcusy1XMmhEVTQTwGeybFbp8YEmB+njbPnth1FibULBSBVwCQni25XlCUDg==}
@@ -7728,7 +7728,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  simple-keyboard@3.8.53: {}
+  simple-keyboard@3.8.55: {}
 
   sirv@3.0.0:
     dependencies:
