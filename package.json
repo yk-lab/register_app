@@ -28,7 +28,7 @@
 		"autoprefixer": "10.4.20",
 		"es-toolkit": "1.38.0",
 		"handlebars": "4.7.8",
-		"lucide-vue-next": "0.506.0",
+		"lucide-vue-next": "0.511.0",
 		"notyf": "3.10.0",
 		"rollup-plugin-webpack-stats": "2.0.6",
 		"simple-keyboard": "3.8.55",
