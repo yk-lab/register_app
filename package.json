@@ -34,7 +34,7 @@
 		"simple-keyboard": "3.8.55",
 		"tailwindcss": "4.0.8",
 		"uqr": "0.1.2",
-		"vue-tsc": "2.2.8",
+		"vue-tsc": "3.0.1",
 		"zod": "3.25.42"
 	}
 }
